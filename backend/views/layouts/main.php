@@ -230,21 +230,7 @@ AppAsset::register($this);
                                                 class="fa fa-tags nav-icon"></i>
                                         <p>Volunteer Event</p></a>
                                 </li>
-                                <!-- <li class="nav-item <?= ($currentPage == 'administrative-actions') ? 'active' : ''; ?>">
-                                    <a href="/administrative-actions" class="nav-link"><i
-                                                class="fa fa-tags nav-icon"></i>
-                                        <p>Administrative Actions</p></a>
-                                </li>
-                                <li class="nav-item <?= ($currentPage == 'inspection-types') ? 'active' : ''; ?>">
-                                    <a href="/inspection-types" class="nav-link"><i
-                                                class="fa fa-check-circle nav-icon"></i>
-                                        <p>Inspection Type</p></a>
-                                </li>
-                                <li class="nav-item <?= ($currentPage == 'institutions-type') ? 'active' : ''; ?>">
-                                    <a href="/institution-type" class="nav-link"><i
-                                                class="fas fa-wallet nav-icon"></i>
-                                        <p>Institution Type</p></a>
-                                </li> -->
+                         
                             </ul>
                         </li>
                     </ul>
