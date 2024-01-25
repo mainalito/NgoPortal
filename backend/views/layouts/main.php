@@ -159,9 +159,14 @@ AppAsset::register($this);
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-wrench"></i>
-                                <p>Inspection Setup<i class="right fas fa-angle-right"></i></p>
+                                <p>Application Setup<i class="right fas fa-angle-right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
+                                    <a href="/communication-types" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Communication Types</p></a>
+                                </li>
                                 <li class="nav-item <?= ($currentPage == 'administrative-actions') ? 'active' : ''; ?>">
                                     <a href="/administrative-actions" class="nav-link"><i
                                                 class="fa fa-tags nav-icon"></i>
