@@ -159,6 +159,11 @@ AppAsset::register($this);
                                                 class="fa fa-tags nav-icon"></i>
                                         <p>Job Listings</p></a>
                                 </li>
+                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
+                                    <a href="/skills/index" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Skills</p></a>
+                                </li>
                             
                                 <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
                                     <a href="/communication-type" class="nav-link"><i
