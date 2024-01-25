@@ -17,44 +17,11 @@ use Yii;
  * @property int|null $deleted
  * @property string|null $deletedTime
  * @property int $createdBy
+ *
+ * @property JobListings[] $jobListings
  */
 class TimeCommitments extends \yii\db\ActiveRecord
 {
-    /**
-     * Added by Paul Mburu
-     * Filter Deleted Items
-     */
-    public static function find()
-    {
-        return parent::find()->andWhere(['=', 'deleted', 0]);
-    }
-
-    /**
-     * Added by Paul Mburu
-     * To be executed before delete
-     */
-    public function delete()
-    {
-        $m = parent::findOne($this->getPrimaryKey());
-        $m->deleted = 1;
-        $m->deletedTime = date('Y-m-d H:i:s');
-        return $m->save();
-    }
-
-    /**
-     * Added by Paul Mburu
-     * To be executed before Save
-     */
-    public function save($runValidation = true, $attributeNames = null)
-    {
-        //this record is always new
-        if ($this->isNewRecord) {
-            $this->createdBy = Yii::$app->user->identity->id;
-            $this->createdTime = date('Y-m-d h:i:s');
-        }
-        return parent::save();
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -93,5 +60,15 @@ class TimeCommitments extends \yii\db\ActiveRecord
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
         ];
+    }
+
+    /**
+     * Gets query for [[JobListings]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJobListings()
+    {
+        return $this->hasMany(JobListings::class, ['timeCommitmentId' => 'id']);
     }
 }
