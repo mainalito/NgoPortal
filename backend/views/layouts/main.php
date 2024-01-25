@@ -49,6 +49,9 @@ AppAsset::register($this);
         .help-block {
             color: #BF1B00 !important;
         }
+        .nav-link{
+            color:white !important
+        }
     </style>
     <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
     <?php $this->beginBody() ?>
