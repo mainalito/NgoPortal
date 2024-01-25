@@ -88,7 +88,7 @@ AppAsset::register($this);
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-light-green elevation-4"  style="background-color: #CCAD6B;">
+        <aside class="main-sidebar sidebar-light-green elevation-4"  style="background-color: green; color: white!important;">
             <!-- Brand Logo -->
             <a href="/" class="brand-link  mt-3 pb-3 mb-3 d-flex" style="padding: 0!important;">
                 <img src="../../dist/img/logo.png"
