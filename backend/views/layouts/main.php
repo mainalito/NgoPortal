@@ -50,7 +50,7 @@ AppAsset::register($this);
             color: #BF1B00 !important;
         }
         .nav-link{
-            color:white !important
+            color: #efefef !important
         }
     </style>
     <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">

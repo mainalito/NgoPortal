@@ -25,7 +25,7 @@ class MembershipStatus extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return parent::find()->andWhere(['=', 'deleted', 0]);
+        return parent::find()->andWhere(['!=', 'deleted', 1]);
     }
 
     /**
@@ -49,6 +49,7 @@ class MembershipStatus extends \yii\db\ActiveRecord
         //this record is always new
         if ($this->isNewRecord) {
             $this->createdBy = Yii::$app->user->identity->id;
+            $this->deleted = 0;
             $this->createdTime = date('Y-m-d h:i:s');
         }
         return parent::save();

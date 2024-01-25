@@ -49,11 +49,12 @@ class MembershipUsers extends \yii\db\ActiveRecord
      * Added by Paul Mburu
      * To be executed before Save
      */
-    public function save($runValidation = true, $attributeNames = null)
+   public function save($runValidation = true, $attributeNames = null)
     {
         //this record is always new
         if ($this->isNewRecord) {
             $this->createdBy = Yii::$app->user->identity->id;
+            $this->deleted = 0;
             $this->createdTime = date('Y-m-d h:i:s');
         }
         return parent::save();
