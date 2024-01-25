@@ -132,33 +132,7 @@ AppAsset::register($this);
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-gavel"></i>
-                                <p>Compliance <i class="right fas fa-angle-right"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item <?= ($currentPage == 'compliance-submissions') ? 'active' : ''; ?>">
-                                    <a href="/compliance-submissions" class="nav-link"><i class="fas fa-upload nav-icon"></i>
-                                        <p>Annual Compliance</p></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tape"></i>
-                                <p>
-                                    Inspections
-                                    <i class="right fas fa-angle-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item <?= ($currentPage == 'inspections') ? 'active' : ''; ?>">
-                                    <a href="/inspections" class="nav-link"><i class="fas fa-folder nav-icon"></i>
-                                        <p>Inspections</p></a>
-                                </li>
-                            </ul>
-                        </li>
+                    
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-wrench"></i>
@@ -185,26 +159,7 @@ AppAsset::register($this);
                                                 class="fa fa-tags nav-icon"></i>
                                         <p>Job Listings</p></a>
                                 </li>
-                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
-                                    <a href="/approval-status/index" class="nav-link"><i
-                                                class="fa fa-tags nav-icon"></i>
-                                        <p>Approval Status</p></a>
-                                </li>
-                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
-                                    <a href="/gender/index" class="nav-link"><i
-                                                class="fa fa-tags nav-icon"></i>
-                                        <p>Gender</p></a>
-                                </li>
-                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
-                                    <a href="/time-commitments/index" class="nav-link"><i
-                                                class="fa fa-tags nav-icon"></i>
-                                        <p>Time Commitments</p></a>
-                                </li>
-                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
-                                    <a href="/job-listings/index" class="nav-link"><i
-                                                class="fa fa-tags nav-icon"></i>
-                                        <p>Job Listings</p></a>
-                                </li>
+                            
                                 <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
                                     <a href="/communication-type" class="nav-link"><i
                                                 class="fa fa-tags nav-icon"></i>
@@ -275,7 +230,7 @@ AppAsset::register($this);
                                                 class="fa fa-tags nav-icon"></i>
                                         <p>Volunteer Event</p></a>
                                 </li>
-                                <li class="nav-item <?= ($currentPage == 'administrative-actions') ? 'active' : ''; ?>">
+                                <!-- <li class="nav-item <?= ($currentPage == 'administrative-actions') ? 'active' : ''; ?>">
                                     <a href="/administrative-actions" class="nav-link"><i
                                                 class="fa fa-tags nav-icon"></i>
                                         <p>Administrative Actions</p></a>
@@ -289,7 +244,7 @@ AppAsset::register($this);
                                     <a href="/institution-type" class="nav-link"><i
                                                 class="fas fa-wallet nav-icon"></i>
                                         <p>Institution Type</p></a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                     </ul>
