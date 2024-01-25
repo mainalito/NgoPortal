@@ -163,9 +163,74 @@ AppAsset::register($this);
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
-                                    <a href="/communication-types" class="nav-link"><i
+                                    <a href="/communication-type" class="nav-link"><i
                                                 class="fa fa-tags nav-icon"></i>
                                         <p>Communication Types</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'communications') ? 'active' : ''; ?>">
+                                    <a href="/communications" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Communications</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'currency') ? 'active' : ''; ?>">
+                                    <a href="/currency" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Currency</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'membership-approval-status') ? 'active' : ''; ?>">
+                                    <a href="/membership-approval-status" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Membership Approval Status</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'membership-status') ? 'active' : ''; ?>">
+                                    <a href="/membership-status" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Membership Status</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'membership-types') ? 'active' : ''; ?>">
+                                    <a href="/membership-types" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Membership Types</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'ngo-types') ? 'active' : ''; ?>">
+                                    <a href="/ngo-types" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Ngo Types</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'ngo-department') ? 'active' : ''; ?>">
+                                    <a href="/ngo-department" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Ngo Departments</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'support') ? 'active' : ''; ?>">
+                                    <a href="/support" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Support</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'support-type') ? 'active' : ''; ?>">
+                                    <a href="/support-type" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Support Type</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'task-type') ? 'active' : ''; ?>">
+                                    <a href="/task-type" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Task Type</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'volunteer-availability') ? 'active' : ''; ?>">
+                                    <a href="/volunteer-availability" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Volunteer Availability</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'volunteer-event-types') ? 'active' : ''; ?>">
+                                    <a href="/volunteer-event-types" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Volunteer Event Types</p></a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'volunteer-events') ? 'active' : ''; ?>">
+                                    <a href="/volunteer-events" class="nav-link"><i
+                                                class="fa fa-tags nav-icon"></i>
+                                        <p>Volunteer Event</p></a>
                                 </li>
                                 <li class="nav-item <?= ($currentPage == 'administrative-actions') ? 'active' : ''; ?>">
                                     <a href="/administrative-actions" class="nav-link"><i
