@@ -25,7 +25,7 @@ class MembershipStatus extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return parent::find()->andWhere(['!=', 'deleted', 1]);
+        return parent::find()->andWhere(['=', 'deleted', 0]);
     }
 
     /**
