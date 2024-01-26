@@ -60,7 +60,7 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
      * Added by Paul Mburu
      * To be executed before Save
      */
-   public function save($runValidation = true, $attributeNames = null)
+    public function save($runValidation = true, $attributeNames = null)
     {
         //this record is always new
         if ($this->isNewRecord) {
@@ -85,10 +85,12 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['email'], 'unique'],
+            [['firstname', 'lastName', 'telephoneNo', 'physicalAddress', 'dateOfBirth', 'genderId', 'createdTime', 'createdBy', 'countryId', 'membershipTypeId', 'ngoId'], 'required'],
             [['telephoneNo', 'email', 'physicalAddress', 'firstname', 'otherNames', 'lastName', 'comments'], 'string'],
             [['dateOfBirth', 'effectiveDate', 'expiryDate', 'createdTime', 'updatedTime', 'deletedTime'], 'safe'],
             [['genderId', 'membershipUserId', 'countryId', 'passport', 'IdNo', 'membershipstatusId', 'membershipTypeId', 'ngoId', 'MembershipApprovalStatusId', 'deleted', 'createdBy'], 'integer'],
-            [['createdTime', 'createdBy'], 'required'],
+
         ];
     }
 
@@ -99,7 +101,7 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'telephoneNo' => 'Telephone No',
+            'telephoneNo' => 'Telephone Number',
             'email' => 'Email',
             'physicalAddress' => 'Physical Address',
             'firstname' => 'Firstname',
@@ -110,10 +112,10 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
             'membershipUserId' => 'Membership User ID',
             'countryId' => 'Country ID',
             'passport' => 'Passport',
-            'IdNo' => 'Id No',
-            'membershipstatusId' => 'Membershipstatus ID',
-            'membershipTypeId' => 'Membership Type ID',
-            'ngoId' => 'Ngo ID',
+            'IdNo' => 'Id Number',
+            'membershipstatusId' => 'Membership status ',
+            'membershipTypeId' => 'Membership Type',
+            'ngoId' => 'NGO',
             'MembershipApprovalStatusId' => 'Membership Approval Status ID',
             'effectiveDate' => 'Effective Date',
             'expiryDate' => 'Expiry Date',

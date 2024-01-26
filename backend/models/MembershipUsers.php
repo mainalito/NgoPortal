@@ -13,7 +13,7 @@ use Yii;
  * @property string|null $othernames
  * @property string|null $lastnames
  * @property string|null $email
- * @property int|null $ngoId
+ * @property int|null $membershipProfileId
  * @property string|null $password
  * @property string|null $comments
  * @property string $createdTime
@@ -75,7 +75,7 @@ class MembershipUsers extends \yii\db\ActiveRecord
     {
         return [
             [['id', 'createdTime', 'createdBy'], 'required'],
-            [['id', 'ngoId', 'deleted', 'createdBy'], 'integer'],
+            [['id', 'membershipProfileId', 'deleted', 'createdBy'], 'integer'],
             [['username', 'firstname', 'othernames', 'lastnames', 'email', 'password', 'comments'], 'string'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
             [['id'], 'unique'],
@@ -94,7 +94,7 @@ class MembershipUsers extends \yii\db\ActiveRecord
             'othernames' => 'Othernames',
             'lastnames' => 'Lastnames',
             'email' => 'Email',
-            'ngoId' => 'Ngo ID',
+            'membershipProfileId' => 'membershipProfileId',
             'password' => 'Password',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',

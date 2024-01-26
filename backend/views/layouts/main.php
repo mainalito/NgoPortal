@@ -132,6 +132,23 @@ AppAsset::register($this);
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Members
+                                    <i class="right fas fa-angle-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item <?= ($currentPage == 'members') ? 'active' : ''; ?>">
+                                    <a href="/membership-individual-profiles" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Members</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">

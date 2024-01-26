@@ -10,7 +10,7 @@ use Yii;
  * @property int $ID
  * @property string|null $name
  * @property string|null $nationality
- * @property int|null $use_passport
+ * @property int|null $usePassport
  * @property string|null $comments
  * @property string $createdTime
  * @property string|null $updatedTime
@@ -71,7 +71,7 @@ class Countries extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'nationality', 'comments'], 'string'],
-            [['use_passport', 'deleted', 'createdBy'], 'integer'],
+            [['usePassport', 'deleted', 'createdBy'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
         ];
@@ -86,7 +86,7 @@ class Countries extends \yii\db\ActiveRecord
             'ID' => 'ID',
             'name' => 'Name',
             'nationality' => 'Nationality',
-            'use_passport' => 'Use Passport',
+            'usePassport' => 'Use Passport',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
             'updatedTime' => 'Updated Time',
