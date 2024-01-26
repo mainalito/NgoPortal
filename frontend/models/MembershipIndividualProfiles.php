@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use backend\models\Countries;
 use Yii;
 
 /**
@@ -33,7 +34,13 @@ use Yii;
  * @property string|null $deletedTime
  * @property int $createdBy
  *
+ * @property Countries $country
+ * @property Gender $gender
+ * @property MembershipApprovalStatus $membershipApprovalStatus
+ * @property MembershipTypes $membershipType
  * @property MembershipUsers[] $membershipUsers
+ * @property MembershipStatus $membershipstatus
+ * @property NgoDepartment $ngo
  */
 class MembershipIndividualProfiles extends \yii\db\ActiveRecord
 {
@@ -55,6 +62,12 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
             [['dateOfBirth', 'effectiveDate', 'expiryDate', 'createdTime', 'updatedTime', 'deletedTime'], 'safe'],
             [['genderId', 'membershipUserId', 'countryId', 'passport', 'IdNo', 'membershipstatusId', 'membershipTypeId', 'ngoId', 'MembershipApprovalStatusId', 'deleted', 'createdBy'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
+            [['countryId'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['countryId' => 'ID']],
+            [['genderId'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::class, 'targetAttribute' => ['genderId' => 'ID']],
+            [['MembershipApprovalStatusId'], 'exist', 'skipOnError' => true, 'targetClass' => MembershipApprovalStatus::class, 'targetAttribute' => ['MembershipApprovalStatusId' => 'id']],
+            [['membershipstatusId'], 'exist', 'skipOnError' => true, 'targetClass' => MembershipStatus::class, 'targetAttribute' => ['membershipstatusId' => 'id']],
+            [['membershipTypeId'], 'exist', 'skipOnError' => true, 'targetClass' => MembershipTypes::class, 'targetAttribute' => ['membershipTypeId' => 'id']],
+            [['ngoId'], 'exist', 'skipOnError' => true, 'targetClass' => NgoDepartment::class, 'targetAttribute' => ['ngoId' => 'ID']],
         ];
     }
 
@@ -73,14 +86,14 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
             'lastName' => 'Last Name',
             'dateOfBirth' => 'Date Of Birth',
             'genderId' => 'Gender ID',
-            'membershipUserId' => 'Membership User ID',
+            'membershipUserId' => 'Membership User',
             'countryId' => 'Country ID',
             'passport' => 'Passport',
             'IdNo' => 'Id No',
-            'membershipstatusId' => 'Membershipstatus ID',
-            'membershipTypeId' => 'Membership Type ID',
-            'ngoId' => 'Ngo ID',
-            'MembershipApprovalStatusId' => 'Membership Approval Status ID',
+            'membershipstatusId' => 'Membership Status',
+            'membershipTypeId' => 'Membership Type',
+            'ngoId' => 'NGO',
+            'MembershipApprovalStatusId' => 'Membership Status',
             'effectiveDate' => 'Effective Date',
             'expiryDate' => 'Expiry Date',
             'comments' => 'Comments',
@@ -93,6 +106,46 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Country]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Countries::class, ['ID' => 'countryId']);
+    }
+
+    /**
+     * Gets query for [[Gender]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGender()
+    {
+        return $this->hasOne(Gender::class, ['ID' => 'genderId']);
+    }
+
+    /**
+     * Gets query for [[MembershipApprovalStatus]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMembershipApprovalStatus()
+    {
+        return $this->hasOne(MembershipApprovalStatus::class, ['id' => 'MembershipApprovalStatusId']);
+    }
+
+    /**
+     * Gets query for [[MembershipType]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMembershipType()
+    {
+        return $this->hasOne(MembershipTypes::class, ['id' => 'membershipTypeId']);
+    }
+
+    /**
      * Gets query for [[MembershipUsers]].
      *
      * @return \yii\db\ActiveQuery
@@ -100,5 +153,25 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
     public function getMembershipUsers()
     {
         return $this->hasMany(MembershipUsers::class, ['membershipProfileId' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Membershipstatus]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMembershipstatus()
+    {
+        return $this->hasOne(MembershipStatus::class, ['id' => 'membershipstatusId']);
+    }
+
+    /**
+     * Gets query for [[Ngo]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNgo()
+    {
+        return $this->hasOne(NgoDepartment::class, ['ID' => 'ngoId']);
     }
 }
