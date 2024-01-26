@@ -3,13 +3,26 @@
         'name' => 'yiisoft/yii2-app-advanced',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
         'reference' => 'c63d461d6763660ab3b2cca8c88fcd05f80c5474',
+=======
+        'reference' => '8836f7cc23d5436e904742596a25408e942ac589',
+>>>>>>> 679a03d927288e8a91db611e9674c108035908c4
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        '2amigos/yii2-ckeditor-widget' => array(
+            'pretty_version' => '1.0.4',
+            'version' => '1.0.4.0',
+            'reference' => '023eb29fedfc3c3121c17688ed237e8688f5eb50',
+            'type' => 'yii2-extension',
+            'install_path' => __DIR__ . '/../2amigos/yii2-ckeditor-widget',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'behat/gherkin' => array(
             'pretty_version' => 'v4.9.0',
             'version' => '4.9.0.0',
@@ -1027,7 +1040,11 @@
         'yiisoft/yii2-app-advanced' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => 'c63d461d6763660ab3b2cca8c88fcd05f80c5474',
+=======
+            'reference' => '8836f7cc23d5436e904742596a25408e942ac589',
+>>>>>>> 679a03d927288e8a91db611e9674c108035908c4
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

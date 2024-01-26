@@ -129,6 +129,10 @@ class ComposerStaticInit83c39f983bb751dcf7738436d796fda0
         array (
             'frontend\\tests\\' => 15,
         ),
+        'd' => 
+        array (
+            'dosamigos\\ckeditor\\' => 19,
+        ),
         'c' => 
         array (
             'common\\tests\\' => 13,
@@ -306,6 +310,10 @@ class ComposerStaticInit83c39f983bb751dcf7738436d796fda0
         array (
             0 => __DIR__ . '/../..' . '/frontend/tests',
             1 => __DIR__ . '/../..' . '/frontend/tests/_support',
+        ),
+        'dosamigos\\ckeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-ckeditor-widget/src',
         ),
         'common\\tests\\' => 
         array (

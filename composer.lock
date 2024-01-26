@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "1192966623fedbe6d577e7e313135801",
     "packages": [
         {
@@ -29,6 +30,42 @@
             "autoload": {
                 "psr-4": {
                     "borales\\extensions\\phoneInput\\": "src/"
+=======
+    "content-hash": "3df51e8155733b0451c764e53d7ccab7",
+    "packages": [
+        {
+            "name": "2amigos/yii2-ckeditor-widget",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-ckeditor-widget.git",
+                "reference": "023eb29fedfc3c3121c17688ed237e8688f5eb50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-ckeditor-widget/zipball/023eb29fedfc3c3121c17688ed237e8688f5eb50",
+                "reference": "023eb29fedfc3c3121c17688ed237e8688f5eb50",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\ckeditor\\": "src"
+>>>>>>> 679a03d927288e8a91db611e9674c108035908c4
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -37,6 +74,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
                     "name": "Borales (Alexandr Bordun)",
                     "email": "bordun.alexandr@gmail.com"
                 }
@@ -54,6 +92,31 @@
                 "source": "https://github.com/Borales/yii2-phone-input"
             },
             "time": "2019-10-06T17:45:40+00:00"
+=======
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CKEditor widget for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/ckeditor-widget",
+            "keywords": [
+                "2amigos",
+                "CKEditor",
+                "extension",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/2amigos/yii2-ckeditor-widget/issues",
+                "source": "https://github.com/2amigos/yii2-ckeditor-widget"
+            },
+            "abandoned": true,
+            "time": "2015-04-30T12:22:25+00:00"
+>>>>>>> 679a03d927288e8a91db611e9674c108035908c4
         },
         {
             "name": "bower-asset/bootstrap",

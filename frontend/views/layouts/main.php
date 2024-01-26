@@ -104,11 +104,11 @@ AppAsset::register($this);
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="info">
-                        <a href="/" class="d-block"><b><?= Yii::$app->user->identity->organizationName ?></b></a>
-                    </div>
-                </div>
+<!--                <div class="user-panel mt-3 pb-3 mb-3 d-flex">-->
+<!--                    <div class="info">-->
+<!--                        <a href="/" class="d-block"><b>--><?php //= Yii::$app->user->identity->organizationName ?><!--</b></a>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">

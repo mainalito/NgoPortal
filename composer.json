@@ -27,8 +27,12 @@
         "kartik-v/yii2-dialog": "dev-master",
         "symfony/mailer": "^5.4",
         "kartik-v/yii2-mpdf": "dev-master",
+<<<<<<< HEAD
         "borales/yii2-phone-input": "*"
 
+=======
+        "2amigos/yii2-ckeditor-widget": "~1.0"
+>>>>>>> 679a03d927288e8a91db611e9674c108035908c4
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
