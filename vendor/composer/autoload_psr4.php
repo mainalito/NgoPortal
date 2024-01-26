@@ -29,6 +29,7 @@ return array(
     'kartik\\bs5dropdown\\' => array($vendorDir . '/kartik-v/yii2-bootstrap5-dropdown/src'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base/src'),
     'frontend\\tests\\' => array($baseDir . '/frontend/tests', $baseDir . '/frontend/tests/_support'),
+    'dosamigos\\ckeditor\\' => array($vendorDir . '/2amigos/yii2-ckeditor-widget/src'),
     'common\\tests\\' => array($baseDir . '/common/tests', $baseDir . '/common/tests/_support'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'backend\\tests\\' => array($baseDir . '/backend/tests', $baseDir . '/backend/tests/_support'),

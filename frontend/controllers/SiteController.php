@@ -173,10 +173,10 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $institution_types = ArrayHelper::map(InstitutionTypes::find()->all(), 'institutionTypeId', 'institutionTypeName');
+
         return $this->render('signup', [
             'model' => $model,
-            'institution_types' => $institution_types
+
         ]);
     }
 
