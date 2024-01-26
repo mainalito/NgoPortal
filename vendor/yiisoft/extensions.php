@@ -166,7 +166,6 @@ return array (
       '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug/src',
     ),
   ),
-<<<<<<< HEAD
   'borales/yii2-phone-input' => 
   array (
     'name' => 'borales/yii2-phone-input',
@@ -174,7 +173,8 @@ return array (
     'alias' => 
     array (
       '@borales/extensions/phoneInput' => $vendorDir . '/borales/yii2-phone-input/src',
-=======
+    )
+  ),
   '2amigos/yii2-ckeditor-widget' => 
   array (
     'name' => '2amigos/yii2-ckeditor-widget',
@@ -182,7 +182,6 @@ return array (
     'alias' => 
     array (
       '@dosamigos/ckeditor' => $vendorDir . '/2amigos/yii2-ckeditor-widget/src',
->>>>>>> 679a03d927288e8a91db611e9674c108035908c4
     ),
   ),
 );

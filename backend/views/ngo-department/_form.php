@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput() ?>
     <?= $form->field($model, 'ngoTypeId')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(NgoTypes::find()->all(), 'id', 'name'),
+        'data' => ArrayHelper::map(NgoTypes::find()->all(), 'ID', 'name'),
         'language' => 'en',
         'options' => ['placeholder' => 'Select Ngo Types'],
         'pluginOptions' => [

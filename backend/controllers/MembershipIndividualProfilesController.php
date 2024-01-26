@@ -84,38 +84,40 @@ class MembershipIndividualProfilesController extends Controller
     public function actionCreate()
     {
         $model = new MembershipIndividualProfiles();
-    
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 // Check if a user or individual profile with the same email already exists
                 $membershipUser =  User::find()->where(['email' => $model->email])->one();
                 $membershipIndividualProfile =  MembershipIndividualProfiles::find()->where(['email' => $model->email])->one();
-    
+
                 if ($membershipUser || $membershipIndividualProfile) {
                     Yii::$app->session->setFlash('error', 'Account is already registered');
                     return $this->redirect(Yii::$app->request->referrer);
                 }
-    
+
                 // Save the individual profile
                 if ($model->save()) {
                     // Check if a user with the same email exists
                     $membershipUser =  User::find()->where(['email' => $model->email])->one();
-    
+
                     // If a user doesn't exist, create one
                     if (!$membershipUser) {
                         $membershipUser = new User();
                         $membershipUser->email = $model->email;
                         $membershipUser->firstname = $model->firstname;
+                        $membershipUser->createdBy = $model->createdBy;
+                        $membershipUser->createdTime = $model->createdTime;
+                        
                         // You may want to set other user attributes here
-                        $membershipUser->save(false); 
+                        $membershipUser->save(false);
 
                         self::sendEmailUser($membershipUser);
-                       
                     }
-    
+
                     // TODO: Send email to the user with login credentials
                     // Example: Yii::$app->mailer->compose()->setTo($model->email)->setSubject('Registration Confirmation')->send();
-    
+
                     Yii::$app->session->setFlash('success', 'Account registered successfully');
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
@@ -123,12 +125,12 @@ class MembershipIndividualProfilesController extends Controller
         } else {
             $model->loadDefaultValues();
         }
-    
+
         return $this->render('create', [
             'model' => $model,
         ]);
     }
-    
+
     /**
      * Updates an existing MembershipIndividualProfiles model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -191,24 +193,15 @@ class MembershipIndividualProfilesController extends Controller
         ];
     }
 
-    private function sendEmailUser($membershipUser){
+    private function sendEmailUser($membershipUser)
+    {
         $notification = new Notifications();
-        $notification->sendMessage('MBLOGIN', $membershipUser->email,
-            $parameters = ['FullName' => $membershipUser->firstname]);
-         #Process fail or pass email
-         return  Yii::$app
-         ->mailer
-         ->compose(
-             [
-                 'html' =>'membership-login'],
-             [
-                 'applicant' => $membershipUser,
-             ]
-         )
-         ->setFrom([Yii::$app->params['adminEmail'] => 'NGO'])
-         ->setTo($membershipUser->email)
-//            ->setTo('kmndavid@gmail.com')
-         ->setSubject('Login Details')
-         ->send();
+        $notification->sendMessage(
+            'LINKLOGIN',
+            $membershipUser->email,
+            $parameters = ['FullName' => $membershipUser->firstname, 
+            'LINK' => Yii::$app->params['frontendURL'].'/site/login']
+        );
+
     }
 }

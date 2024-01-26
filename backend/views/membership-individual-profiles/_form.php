@@ -117,7 +117,7 @@ use borales\extensions\phoneInput\PhoneInput;
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'ngoId')->widget(Select2::classname(), [
-                'data' => ArrayHelper::map(NgoDepartment::find()->all(), 'id', 'name'),
+                'data' => ArrayHelper::map(NgoDepartment::find()->all(), 'ID', 'name'),
                 'language' => 'en',
                 'options' => ['placeholder' => 'Select NGO'],
                 'pluginOptions' => [
