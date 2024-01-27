@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
 use frontend\models\MembershipIndividualProfiles;
 use frontend\models\MembershipIndividualProfilesSearch;
 use yii\web\Controller;
@@ -65,8 +66,10 @@ class MembershipIndividualProfilesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
+        $id = base64_decode($id);
+        $user = User::findOne($id);
         $model = new MembershipIndividualProfiles();
 
         if ($this->request->isPost) {
@@ -79,6 +82,7 @@ class MembershipIndividualProfilesController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'user' => $user
         ]);
     }
 

@@ -36,9 +36,10 @@ YiiAsset::register($this);
                     <?= DetailView::widget([
                         'model' => Yii::$app->user->identity,
                         'attributes' => [
-                            'id',
                             'username',
-                            'organizationName',
+                            'firstname',
+                            'lastnames',
+                            'othernames',
                             'email',
                             [
                                 'format' => ['date', 'php:d/m/Y h:i a'],
@@ -47,7 +48,9 @@ YiiAsset::register($this);
                             ],
                         ],
                     ]) ?>
-
+                    <div class="form-group">
+                        <?= Html::a('Update Profile', ['membership-individual-profiles/create', 'id' => base64_encode(Yii::$app->user->identity->id)], ['class' => 'btn btn-primary float-right']) ?>
+                    </div>
                 </div>
             </div>
         </div>

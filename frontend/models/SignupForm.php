@@ -99,6 +99,7 @@ class SignupForm extends Model
         if($user->save()) {
             $model = new PastPasswords();
             $model->addPassword($user->id, $user->password_hash);
+            Yii::$app->session->setFlash('success', ' Registration successful. Go to your email to verify your account.', true);
             return $this->sendEmail($user);
         }
         return false;
@@ -114,6 +115,6 @@ class SignupForm extends Model
         $notification = new Notifications();
         $verifyLink = Yii::$app->urlManager->createAbsoluteUrl(['site/verify-email', 'token' => $user->verification_token]);
         $link = Html::a('link', $verifyLink,['class' => 'btn btn-sm btn-success']);
-        return $notification->sendMessage('VERIFY-EMAIL', $user->email, $parameters = ['FullName' => $user->organizationName, 'Link' => $link]);
+        return $notification->sendMessage('VERIFY-EMAIL', $user->email, $parameters = ['FullName' => $user->firstname, 'Link' => $link]);
     }
 }
