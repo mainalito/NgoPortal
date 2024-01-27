@@ -2,7 +2,9 @@
 
 namespace backend\models;
 
+use common\models\User;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "communications".
@@ -21,7 +23,11 @@ use Yii;
  * @property int $createdBy
  */
 class Communications extends \yii\db\ActiveRecord
-{
+{   
+     /**
+     * @var UploadedFile[]
+     */
+    public $documents;
     /**
      * Added by Paul Mburu
      * Filter Deleted Items
@@ -72,9 +78,11 @@ class Communications extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['documents'], 'file', 'skipOnEmpty' => true, 'extensions' => 'docx, pdf,xlsx'],
+            
             [['title', 'description', 'attachments', 'comments'], 'string'],
             [['communicationTypeId', 'membershipTypeId', 'deleted', 'createdBy'], 'integer'],
-            [['createdTime', 'createdBy'], 'required'],
+            [['createdTime', 'createdBy','title','communicationTypeId','membershipTypeId'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
         ];
     }
@@ -98,5 +106,17 @@ class Communications extends \yii\db\ActiveRecord
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
         ];
+    }
+    public function getMembershipType()
+    {
+        return $this->hasOne(MembershipTypes::className(), ['id' => 'membershipTypeId']);
+    }
+    public function getCommunicationType()
+    {
+        return $this->hasOne(CommunicationType::className(), ['id' => 'communicationTypeId']);
+    }
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'createdBy']);
     }
 }

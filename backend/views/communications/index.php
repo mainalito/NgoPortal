@@ -27,11 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
-        'id',
-        'title',
-        'description',
-        'attachments',
-        'communicationTypeId',
+        // 'id',
+         'title',
+        // 'description',
+        // 'attachments',
+        ['label'=>'Membership Type','value'=>function($model){
+            return $model->membershipType->name;
+        }],
+        ['label'=>'Communication Type','value'=>function($model){
+            return $model->communicationType->name;
+        }],
         //'membershipTypeId',
         //'comments',
         //'createdTime',

@@ -3,10 +3,13 @@
 namespace backend\controllers;
 
 use backend\models\Communications;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
+use yii\web\UploadedFile;
 
 /**
  * CommunicationsController implements the CRUD actions for Communications model.
@@ -69,6 +72,17 @@ class CommunicationsController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    public function upload($model)
+    {
+        if ($model->validate()) {
+            foreach ($model->documents as $file) {
+                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Creates a new Communications model.
@@ -80,8 +94,34 @@ class CommunicationsController extends Controller
         $model = new Communications();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->documents = UploadedFile::getInstances($model, 'documents');
+                $uploadDir = 'uploads/';
+                $uploadedFiles = [];
+                if (!file_exists($uploadDir) && !is_dir($uploadDir)) {
+                    if (!mkdir($uploadDir, 0777, true)) {
+                        throw new \Exception('Failed to create folders...');
+                    }
+                }
+               
+            
+                foreach ($model->documents as $file) {
+                    $NewBaseName = Yii::$app->getSecurity()->generateRandomString(4) .'.' . $file->extension;
+                    //                $file->saveAs($uploadDir . $NewBaseName);
+                    $uploadedFiles[] = $NewBaseName;
+                }
+                $model->attachments = Json::encode($uploadedFiles);
+
+                if ($model->save()) {
+                    foreach ($uploadedFiles as $index => $file) {
+                        $filePaths = Json::decode($model->attachments);
+                        if (isset($filePaths[$index])) {
+                            $file->saveAs($filePaths[$index]);
+                        }
+                    }
+    
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
