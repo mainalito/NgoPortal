@@ -108,6 +108,8 @@ class MembershipIndividualProfilesController extends Controller
                         $membershipUser->firstname = $model->firstname;
                         $membershipUser->createdBy = $model->createdBy;
                         $membershipUser->createdTime = $model->createdTime;
+                        $membershipUser->lastnames = $model->lastName;
+                        $membershipUser->othernames = $model->otherNames;
                         
                         // You may want to set other user attributes here
                         $membershipUser->save(false);

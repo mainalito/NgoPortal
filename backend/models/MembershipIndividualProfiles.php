@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use borales\extensions\phoneInput\PhoneInputValidator;
+use common\models\User;
 use Yii;
 
 /**
@@ -86,6 +88,9 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
     {
         return [
             [['email'], 'unique'],
+            ['telephoneNo', PhoneInputValidator::className()],
+            ['effectiveDate', 'date', 'format' => 'php:Y-m-d'],
+            ['effectiveDate', 'compare', 'compareValue' => date('Y-m-d'), 'operator' => '>=', 'type' => 'date', 'message' => 'Effective Date must not be less than today.'],
             [['firstname', 'lastName', 'telephoneNo', 'physicalAddress', 'dateOfBirth', 'genderId', 'createdTime', 'createdBy', 'countryId', 'membershipTypeId', 'ngoId'], 'required'],
             [['telephoneNo', 'email', 'physicalAddress', 'firstname', 'otherNames', 'lastName', 'comments'], 'string'],
             [['dateOfBirth', 'effectiveDate', 'expiryDate', 'createdTime', 'updatedTime', 'deletedTime'], 'safe'],
@@ -126,5 +131,33 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
         ];
+    }
+    public function getCountry()
+    {
+        return $this->hasOne(Countries::className(), ['countryId' => 'countryId']);
+    }
+    public function getGender()
+    {
+        return $this->hasOne(Gender::className(), ['ID' => 'genderId']);
+    }
+    public function getMembershipStatus()
+    {
+        return $this->hasOne(MembershipStatus::className(), ['id' => 'membershipstatusId']);
+    }
+    public function getMembershipType()
+    {
+        return $this->hasOne(MembershipTypes::className(), ['id' => 'membershipTypeId']);
+    }
+    public function getNgo()
+    {
+        return $this->hasOne(NgoDepartment::className(), ['ID' => 'ngoId']);
+    }
+    public function getMembershipApprovalStatus()
+    {
+        return $this->hasOne(MembershipApprovalStatus::className(), ['id' => 'MembershipApprovalStatusId']);
+    }
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'createdBy']);
     }
 }
