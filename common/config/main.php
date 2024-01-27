@@ -10,5 +10,11 @@ return [
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],
+        
+    ],
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module',
+        ],
     ],
 ];

@@ -41,7 +41,7 @@ class MembershipIndividualProfilesController extends Controller
     /**
      * Lists all MembershipIndividualProfiles models.
      *
-     
+     * @return Response || s
      */
     public function actionIndex()
     {
@@ -52,14 +52,9 @@ class MembershipIndividualProfilesController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => MembershipIndividualProfiles::find(),
         ]);
-        if (Yii::$app->request->post('reset-button')) {
-            // Redirect to the index action without any filter parameters
-            return $this->redirect(['index']);
-        }
 
         if ($searchModel->load(Yii::$app->request->post()) && $searchModel->validate()) {
-            // Check if the Reset button is clicked
-          
+        
 
             $fullNameParts = explode(' ', $searchModel->fullName);
 

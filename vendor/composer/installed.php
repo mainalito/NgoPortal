@@ -3,11 +3,7 @@
         'name' => 'yiisoft/yii2-app-advanced',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-<<<<<<< HEAD
-        'reference' => 'c63d461d6763660ab3b2cca8c88fcd05f80c5474',
-=======
-        'reference' => '8836f7cc23d5436e904742596a25408e942ac589',
->>>>>>> 679a03d927288e8a91db611e9674c108035908c4
+        'reference' => 'a08b3f727ed80d84bc52e4ebe33852e0b6636062',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -42,9 +38,9 @@
             'dev_requirement' => false,
         ),
         'bower-asset/bootstrap' => array(
-            'pretty_version' => 'v5.3.2',
-            'version' => '5.3.2.0',
-            'reference' => '344e912d04b5b6a04482113eff20ab416ff01048',
+            'pretty_version' => 'v5.2.3',
+            'version' => '5.2.3.0',
+            'reference' => 'cb021439c683d9805e2864c58095b92d405e9b11',
             'type' => 'bower-asset',
             'install_path' => __DIR__ . '/../bower-asset/bootstrap',
             'aliases' => array(),
@@ -1040,11 +1036,7 @@
         'yiisoft/yii2-app-advanced' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-<<<<<<< HEAD
-            'reference' => 'c63d461d6763660ab3b2cca8c88fcd05f80c5474',
-=======
-            'reference' => '8836f7cc23d5436e904742596a25408e942ac589',
->>>>>>> 679a03d927288e8a91db611e9674c108035908c4
+            'reference' => 'a08b3f727ed80d84bc52e4ebe33852e0b6636062',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -3,6 +3,7 @@
 use backend\models\MembershipIndividualProfiles;
 use backend\models\MembershipStatus;
 use backend\models\MembershipTypes;
+use kartik\export\ExportMenu;
 use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -54,9 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="form-group">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-                <?= Html::resetButton('Reset', ['class' => 'btn btn-dark', 'name' => 'reset-button']) ?>
-
-
+                
             </div>
 
             <?php ActiveForm::end(); ?>
@@ -69,6 +68,48 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php Pjax::begin(); ?>
 
+        <?= ExportMenu::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+
+                // 'id',
+                ['label' => 'Full Names', 'value' => function ($model) {
+                    return ucwords($model->firstname . ' ' . $model->otherNames . ' ' . $model->lastName);
+                }],
+                'telephoneNo',
+                'email:email',
+                'physicalAddress',
+
+                //'otherNames',
+                //'lastName',
+                //'dateOfBirth',
+                //'genderId',
+                //'membershipUserId',
+                //'countryId',
+                //'passport',
+                //'IdNo',
+                ['label' => 'Membership Status', 'value' => function ($model) {
+                    return ($model->membershipStatus->name);
+                }],
+
+                ['label' => 'Membership Type', 'value' => function ($model) {
+                    return ($model->membershipType->name);
+                }],
+                //'membershipTypeId',
+                //'ngoId',
+                //'MembershipApprovalStatusId',
+                //'effectiveDate',
+                //'expiryDate',
+                //'comments',
+                //'createdTime',
+                //'updatedTime',
+                //'deleted',
+                //'deletedTime',
+                //'createdBy',
+              
+            ],
+        ]); ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [
