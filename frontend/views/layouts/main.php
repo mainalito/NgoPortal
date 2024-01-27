@@ -18,51 +18,53 @@ $currentRoute = Yii::$app->controller->module->requestedRoute;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>" class="h-100">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge"><!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="<?= Url::to('@web/plugins/fontawesome-free/css/all.min.css') ?>">
-        <!-- IonIcons -->
-        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- overlayScrollbars -->
-        <link rel="stylesheet" href="<?= Url::to('@web/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="<?= Url::to('@web/dist/css/adminlte.min.css') ?>">
-        <!-- Google Font: Source Sans Pro -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-        <!-- jQuery -->
-        <script src="<?= Url::to('@web/plugins/jquery/jquery_new.min.js') ?>"></script>
-        <link rel="shortcut icon" href="../../dist/img/image001.png?v=1" type="image/x-icon" />
-        <?php $this->registerCsrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-    </head>
-    <style>
-        .required:before {
-            content: " *";
-            color: red;
-        }
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>" class="h-100">
 
-        .help-block {
-            color: #BF1B00 !important;
-        }
-    </style>
-    <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
+<head>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"><!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?= Url::to('@web/plugins/fontawesome-free/css/all.min.css') ?>">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="<?= Url::to('@web/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= Url::to('@web/dist/css/adminlte.min.css') ?>">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="<?= Url::to('@web/plugins/jquery/jquery_new.min.js') ?>"></script>
+    <link rel="shortcut icon" href="../../dist/img/image001.png?v=1" type="image/x-icon" />
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
+</head>
+<style>
+    .required:before {
+        content: " *";
+        color: red;
+    }
+
+    .help-block {
+        color: #BF1B00 !important;
+    }
+</style>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed layout-navbar-fixed">
     <?php $this->beginBody() ?>
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light"">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
+            <ul class=" navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/" class="nav-link">Home</a>
+            </li>
             </ul>
 
             <!-- Right navbar links -->
@@ -72,10 +74,11 @@ AppAsset::register($this);
                         <i class="far fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-<!--                        <img class="user-avatar rounded-circle"-->
-<!--                             src="data:image/jpg;charset=utf8;base64,--><?php //echo base64_encode(Yii::$app->user->identity->profile); ?><!--"-->
-<!--                             alt="User Avatar">-->
-<!--                        <div class="dropdown-divider"></div>-->
+                        <!--                        <img class="user-avatar rounded-circle"-->
+                        <!--                             src="data:image/jpg;charset=utf8;base64,--><?php //echo base64_encode(Yii::$app->user->identity->profile); 
+                                                                                                    ?><!--"-->
+                        <!--                             alt="User Avatar">-->
+                        <!--                        <div class="dropdown-divider"></div>-->
                         <a class="nav-link" href="/site/profile"><i class="fa fa-user"></i>My Profile</a>
                         <div class="dropdown-divider"></div>
                         <?php
@@ -92,28 +95,25 @@ AppAsset::register($this);
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-light-green elevation-4"  style="background-color: #5bc0de;">
+        <aside class="main-sidebar sidebar-light-green elevation-4" style="background-color: #5bc0de;">
             <!-- Brand Logo -->
             <a href="/" class="brand-link  mt-3 pb-3 mb-3 d-flex" style="padding: 0!important;">
-                <img src="../../dist/img/logo.png"
-                     alt="Logo"
-                     class="brand-image"
-                     style="opacity: 1!important; max-height: 50px!important; margin: 0!important; width: 245px!important;">
+                <img src="../../dist/img/logo.png" alt="Logo" class="brand-image" style="opacity: 1!important; max-height: 50px!important; margin: 0!important; width: 245px!important;">
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-<!--                <div class="user-panel mt-3 pb-3 mb-3 d-flex">-->
-<!--                    <div class="info">-->
-<!--                        <a href="/" class="d-block"><b>--><?php //= Yii::$app->user->identity->organizationName ?><!--</b></a>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div class="user-panel mt-3 pb-3 mb-3 d-flex">-->
+                <!--                    <div class="info">-->
+                <!--                        <a href="/" class="d-block"><b>--><?php //= Yii::$app->user->identity->organizationName 
+                                                                                ?><!--</b></a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview">
@@ -141,7 +141,8 @@ AppAsset::register($this);
                             <ul class="nav nav-treeview">
                                 <li class="nav-item <?= ($currentPage == 'communications') ? 'active' : ''; ?>">
                                     <a href="/communications" class="nav-link"><i class="fas fa-upload nav-icon"></i>
-                                        <p>Communication</p></a>
+                                        <p>Communication</p>
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -158,17 +159,16 @@ AppAsset::register($this);
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <?= \yii\widgets\Breadcrumbs::widget([
                                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                'options' => ['class' => 'breadcrumb text-right'],
-                                'itemTemplate' => '<li>{link}</li>',
-                                'activeItemTemplate' => '<li class="active">{link}</li>',
+                                'options' => ['class' => 'breadcrumb justify-content-end'], // Adjusted class for right alignment
+                                'itemTemplate' => '<li class="breadcrumb-item">{link}</li>',
+                                'activeItemTemplate' => '<li class="breadcrumb-item active">{link}</li>',
                             ]) ?>
                         </div>
                     </div>
+
                 </div><!-- /.container-fluid -->
             </section>
             <div class="clearfix"></div>
@@ -202,19 +202,19 @@ AppAsset::register($this);
     <!--    });-->
     <!--</script>-->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             /*** add active class and stay opened when selected ***/
             var url = window.location;
 
             // for sidebar menu entirely but not cover treeview
-            $('ul.nav-sidebar a').filter(function () {
+            $('ul.nav-sidebar a').filter(function() {
                 if (this.href) {
                     return this.href == url || url.href.indexOf(this.href) == 0;
                 }
             }).addClass('active');
 
             // for the treeview
-            $('ul.nav-treeview a').filter(function () {
+            $('ul.nav-treeview a').filter(function() {
                 if (this.href) {
                     return this.href == url || url.href.indexOf(this.href) == 0;
                 }
@@ -238,6 +238,7 @@ AppAsset::register($this);
     <script src="<?= Url::to('@web/dist/js/pages/dashboard3.js') ?>"></script>
 
     <?php $this->endBody() ?>
-    </body>
-    </html>
+</body>
+
+</html>
 <?php $this->endPage();

@@ -44,6 +44,7 @@ class CommunicationsController extends Controller
     {
 
         $member = MembershipIndividualProfiles::find()->where(['membershipUserId'=>Yii::$app->user->id])->one();
+        if(!$member) throw new NotFoundHttpException('No such member is found');
 
         $dataProvider = new ActiveDataProvider([
             'query' => Communications::find()->where(['membershipTypeId'=>$member->membershipTypeId]),
