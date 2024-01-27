@@ -8,6 +8,7 @@ use backend\models\MembershipUsers;
 use common\models\Notifications;
 use common\models\User;
 use Yii;
+use yii\base\DynamicModel;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,28 +41,47 @@ class MembershipIndividualProfilesController extends Controller
     /**
      * Lists all MembershipIndividualProfiles models.
      *
-     * @return string
+     
      */
     public function actionIndex()
     {
+        $searchModel = new DynamicModel(['fullName', 'membershipstatusId', 'membershipTypeId']);
+        $searchModel->addRule(['fullName'], 'string');
+        $searchModel->addRule(['membershipstatusId', 'membershipTypeId'], 'integer');
+
         $dataProvider = new ActiveDataProvider([
             'query' => MembershipIndividualProfiles::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
+        if (Yii::$app->request->post('reset-button')) {
+            // Redirect to the index action without any filter parameters
+            return $this->redirect(['index']);
+        }
+
+        if ($searchModel->load(Yii::$app->request->post()) && $searchModel->validate()) {
+            // Check if the Reset button is clicked
+          
+
+            $fullNameParts = explode(' ', $searchModel->fullName);
+
+            $query = MembershipIndividualProfiles::find()
+                ->andFilterWhere([
+                    'or',
+                    ['like', 'firstname', $fullNameParts],
+                    ['like', 'lastName', $fullNameParts],
+                    ['like', 'otherNames', $fullNameParts],
+                ])
+                ->andFilterWhere(['membershipstatusId' => $searchModel->membershipstatusId])
+                ->andFilterWhere(['membershipTypeId' => $searchModel->membershipTypeId]);
+
+            $dataProvider->query = $query;
+        }
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
 
     /**
      * Displays a single MembershipIndividualProfiles model.
@@ -84,23 +104,23 @@ class MembershipIndividualProfilesController extends Controller
     public function actionCreate()
     {
         $model = new MembershipIndividualProfiles();
-    
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 // Check if a user or individual profile with the same email already exists
                 $membershipUser = User::find()->where(['email' => $model->email])->one();
                 $membershipIndividualProfile = MembershipIndividualProfiles::find()->where(['email' => $model->email])->one();
-    
+
                 if ($membershipUser || $membershipIndividualProfile) {
                     Yii::$app->session->setFlash('error', 'Account is already registered');
                     return $this->redirect(Yii::$app->request->referrer);
                 }
-    
+
                 // Save the individual profile
                 if ($model->save()) {
-                    
+
                     $membershipUser = User::find()->where(['email' => $model->email])->one();
-    
+
                     // If a user doesn't exist, create one
                     if (!$membershipUser) {
                         $membershipUser = new User();
@@ -110,17 +130,17 @@ class MembershipIndividualProfilesController extends Controller
                         $membershipUser->createdTime = $model->createdTime;
                         $membershipUser->lastnames = $model->lastName;
                         $membershipUser->othernames = $model->otherNames;
-    
-                        
+
+
                         $membershipUser->save(false);
-    
+
                         // Update the membershipUserId in the individual profile
                         $model->membershipUserId = $membershipUser->id;
                         $model->save(false);
-    
-                        
+
+
                         self::sendEmailUser($membershipUser);
-    
+
                         Yii::$app->session->setFlash('success', 'Account registered successfully');
                         return $this->redirect(['view', 'id' => $model->id]);
                     }
@@ -129,12 +149,12 @@ class MembershipIndividualProfilesController extends Controller
         } else {
             $model->loadDefaultValues();
         }
-    
+
         return $this->render('create', [
             'model' => $model,
         ]);
     }
-    
+
 
     /**
      * Updates an existing MembershipIndividualProfiles model.
@@ -204,9 +224,10 @@ class MembershipIndividualProfilesController extends Controller
         $notification->sendMessage(
             'LINKLOGIN',
             $membershipUser->email,
-            $parameters = ['FullName' => $membershipUser->firstname, 
-            'LINK' => Yii::$app->params['frontendURL'].'/site/members-account-update/'.$membershipUser->id]
+            $parameters = [
+                'FullName' => $membershipUser->firstname,
+                'LINK' => Yii::$app->params['frontendURL'] . '/site/members-account-update/' . $membershipUser->id
+            ]
         );
-
     }
 }
