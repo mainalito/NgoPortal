@@ -6,6 +6,7 @@ use common\models\User;
 use frontend\models\MembershipIndividualProfiles;
 use frontend\models\MembershipIndividualProfilesSearch;
 use yii\web\Controller;
+use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -70,11 +71,28 @@ class MembershipIndividualProfilesController extends Controller
     {
         $id = base64_decode($id);
         $user = User::findOne($id);
-        $model = new MembershipIndividualProfiles();
+        $individual = MembershipIndividualProfiles::find()->where(['userId' => $id])->one();
+        $model = null;
+        if (is_null($individual)) {
+
+            $model = new MembershipIndividualProfiles();
+        } else {
+
+            $model = MembershipIndividualProfiles::find()->where(['userId' => $id])->one();
+        }
+
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->createdTime = date('Y-m-d H:i:s');
+                if ($model->save()) {
+                    Yii::$app->session->setFlash('success', ' Profile Updated Successfully.', true);
+                    return $this->redirect(['site/profile']);
+                } else {
+                    Yii::$app->session->setFlash('error', ' Problem Updating profile.', true);
+                    return $this->redirect(Yii::$app->request->referrer);
+
+                }
             }
         } else {
             $model->loadDefaultValues();

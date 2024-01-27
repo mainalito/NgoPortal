@@ -2,7 +2,12 @@
 
 namespace frontend\models;
 
-use backend\models\Countries;
+use backend\models\Gender;
+use backend\models\MembershipApprovalStatus;
+use backend\models\MembershipStatus;
+use backend\models\MembershipTypes;
+use backend\models\NgoDepartment;
+use common\models\User;
 use Yii;
 
 /**
@@ -18,6 +23,7 @@ use Yii;
  * @property string|null $dateOfBirth
  * @property int|null $genderId
  * @property int|null $membershipUserId
+ * @property int|null $userId
  * @property int|null $countryId
  * @property int|null $passport
  * @property int|null $IdNo
@@ -34,13 +40,13 @@ use Yii;
  * @property string|null $deletedTime
  * @property int $createdBy
  *
- * @property Countries $country
  * @property Gender $gender
  * @property MembershipApprovalStatus $membershipApprovalStatus
  * @property MembershipTypes $membershipType
  * @property MembershipUsers[] $membershipUsers
  * @property MembershipStatus $membershipstatus
  * @property NgoDepartment $ngo
+ * @property User $user
  */
 class MembershipIndividualProfiles extends \yii\db\ActiveRecord
 {
@@ -60,9 +66,9 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
         return [
             [['telephoneNo', 'email', 'physicalAddress', 'firstname', 'otherNames', 'lastName', 'comments'], 'string'],
             [['dateOfBirth', 'effectiveDate', 'expiryDate', 'createdTime', 'updatedTime', 'deletedTime'], 'safe'],
-            [['genderId', 'membershipUserId', 'countryId', 'passport', 'IdNo', 'membershipstatusId', 'membershipTypeId', 'ngoId', 'MembershipApprovalStatusId', 'deleted', 'createdBy'], 'integer'],
+            [['genderId', 'membershipUserId', 'userId', 'countryId', 'passport', 'IdNo', 'membershipstatusId', 'membershipTypeId', 'ngoId', 'MembershipApprovalStatusId', 'deleted', 'createdBy'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
-            [['countryId'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['countryId' => 'ID']],
+            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['userId' => 'id']],
             [['genderId'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::class, 'targetAttribute' => ['genderId' => 'ID']],
             [['MembershipApprovalStatusId'], 'exist', 'skipOnError' => true, 'targetClass' => MembershipApprovalStatus::class, 'targetAttribute' => ['MembershipApprovalStatusId' => 'id']],
             [['membershipstatusId'], 'exist', 'skipOnError' => true, 'targetClass' => MembershipStatus::class, 'targetAttribute' => ['membershipstatusId' => 'id']],
@@ -87,12 +93,13 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
             'dateOfBirth' => 'Date Of Birth',
             'genderId' => 'Gender ID',
             'membershipUserId' => 'Membership User',
+            'userId' => 'User ID',
             'countryId' => 'Country ID',
             'passport' => 'Passport',
             'IdNo' => 'Id No',
-            'membershipstatusId' => 'Membership Status',
+            'membershipstatusId' => 'Membership Status ',
             'membershipTypeId' => 'Membership Type',
-            'ngoId' => 'NGO',
+            'ngoId' => 'Ngo',
             'MembershipApprovalStatusId' => 'Membership Status',
             'effectiveDate' => 'Effective Date',
             'expiryDate' => 'Expiry Date',
@@ -103,16 +110,6 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
         ];
-    }
-
-    /**
-     * Gets query for [[Country]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCountry()
-    {
-        return $this->hasOne(Countries::class, ['ID' => 'countryId']);
     }
 
     /**
@@ -173,5 +170,15 @@ class MembershipIndividualProfiles extends \yii\db\ActiveRecord
     public function getNgo()
     {
         return $this->hasOne(NgoDepartment::class, ['ID' => 'ngoId']);
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'userId']);
     }
 }

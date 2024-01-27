@@ -11,6 +11,8 @@ use yii\widgets\ActiveForm;
 <div class="membership-individual-profiles-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?= $form->field($model, 'userId')->hiddenInput(['value' => $user->id])->label(false) ?>
+    <?= $form->field($model, 'createdBy')->hiddenInput(['value' => $user->id])->label(false) ?>
     <div class="row">
         <div class="col-md-4">
             <?= $form->field($model, 'firstname')->textInput(['value' => $user->firstname, 'readonly'=> true]) ?>
@@ -43,7 +45,8 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <div class="col-md-4">
-            <?= $form->field($model, 'dateOfBirth')->input('date') ?>
+            <?= $form->field($model, 'dateOfBirth')->input('date', ['max' => date('Y-m-d'), 'value' => $model->dateOfBirth ? date('Y-m-d', strtotime($model->dateOfBirth)) : null]) ?>
+
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'genderId')->widget(\kartik\select2\Select2::classname(), [
@@ -73,28 +76,16 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
 
-        <div class="col-md-4" id="passport" style="display: none;">
+        <div class="col-md-6" id="passport" style="display: none;">
             <?= $form->field($model, 'passport')->textInput() ?>
         </div>
-        <div class="col-md-4" id="idNo" style="display: none;">
+        <div class="col-md-6" id="idNo" style="display: none;">
             <?= $form->field($model, 'IdNo')->textInput() ?>
-        </div>
-        <div class="col-md-4">
-            <?= $form->field($model, 'membershipstatusId')->widget(\kartik\select2\Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\backend\models\MembershipStatus::find()->all(), 'id', 'name'),
-                'language' => 'en',
-                'options' => ['placeholder' => 'Select Membership Status'],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-
-            ]) ?>
-
         </div>
     </div>
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <?= $form->field($model, 'membershipTypeId')->widget(\kartik\select2\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\MembershipTypes::find()->all(), 'id', 'name'),
                 'language' => 'en',
@@ -106,7 +97,7 @@ use yii\widgets\ActiveForm;
             ]) ?>
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <?= $form->field($model, 'ngoId')->widget(\kartik\select2\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\backend\models\NgoDepartment::find()->all(), 'ID', 'name'),
                 'language' => 'en',
@@ -117,9 +108,6 @@ use yii\widgets\ActiveForm;
 
             ]) ?>
 
-        </div>
-        <div class="col-md-4">
-            <?= $form->field($model, 'effectiveDate')->input('date') ?>
         </div>
     </div>
 
