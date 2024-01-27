@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use app\models\InstitutionTypes;
+use frontend\models\MembersUpdateForm;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -13,10 +14,12 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\User;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\helpers\VarDumper;
 
 /**
  * Site controller
@@ -33,10 +36,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup', 'index', 'profile'],
+                'only' => ['logout', 'signup', 'index', 'profile', 'members-account-update'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['signup', 'members-account-update'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -114,6 +117,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
 
     /**
      * Logs out the current user.
@@ -250,6 +254,31 @@ class SiteController extends Controller
 
         Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
         return $this->goHome();
+    }
+
+    public function actionMembersAccountUpdate($membershipUserId)
+    {
+
+        try {
+            $model = new MembersUpdateForm($membershipUserId);
+        } catch (InvalidArgumentException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+        $user = User::findOne($membershipUserId);
+
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->addPassword()) {
+                $this->goBack();
+            }
+        }
+
+        // $model->password = '';
+
+        return $this->render('members-details-update', [
+            'model' => $model,
+        ]);
     }
 
     /**

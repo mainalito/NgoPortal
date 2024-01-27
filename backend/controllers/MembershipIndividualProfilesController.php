@@ -200,7 +200,7 @@ class MembershipIndividualProfilesController extends Controller
             'LINKLOGIN',
             $membershipUser->email,
             $parameters = ['FullName' => $membershipUser->firstname, 
-            'LINK' => Yii::$app->params['frontendURL'].'/site/login']
+            'LINK' => Yii::$app->params['frontendURL'].'/site/members-account-update/'.$membershipUser->id]
         );
 
     }
