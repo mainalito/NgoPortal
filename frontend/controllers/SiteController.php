@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use app\models\InstitutionTypes;
+use frontend\models\MembershipIndividualProfiles;
 use frontend\models\MembersUpdateForm;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -92,7 +93,11 @@ class SiteController extends Controller
     public function actionProfile()
     {
         $this->layout = 'main';
-        return $this->render('profile');
+        $userid = Yii::$app->user->identity->id;
+        $individual = MembershipIndividualProfiles::find()->where(['userID' => $userid])->one();
+        return $this->render('profile', [
+            'individual' => $individual,
+        ]);
     }
 
     /**

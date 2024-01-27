@@ -46,6 +46,38 @@ YiiAsset::register($this);
                                 'attribute' => 'createdTime',
                                 'label' => 'Creation Date ',
                             ],
+                            [
+                                'attribute' => 'Gender',
+                                'value' => $individual->gender->name ?? 'Not Set',
+                            ],
+                            [
+                                'attribute' => 'Country',
+                                'value' => $individual->countryId ?? 'Not Set',
+                            ],
+                            [
+                                'attribute' => 'Telephone',
+                                'value' => $individual->telephoneNo ?? 'Not Set',
+                            ],
+                            [
+                                'attribute' => 'Physical Address',
+                                'value' => $individual->physicalAddress ?? 'Not Set',
+                            ],
+                            [
+                                'attribute' => 'DateOfBirth',
+                                'value' => date('Y-m-d', strtotime($individual->dateOfBirth  ?? 'Not Set'))
+                            ],
+                            [
+                                'attribute' => 'MembershipType',
+                                'value' => $individual->membershipType->name ?? 'Not Set',
+                            ],
+                            [
+                                'attribute' => 'NGO',
+                                'value' => $individual->ngo->name ?? 'Not Set',
+                            ],
+                            [
+                                'attribute' => 'MembershipStatus',
+                                'value' => $individual->membershipApprovalStatus->name ?? 'Pending Review',
+                            ],
                         ],
                     ]) ?>
                     <div class="form-group">
