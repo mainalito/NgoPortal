@@ -33,15 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     'name',
-                    'description',
+                    // 'description',
                     [
                         'attribute' => 'timeCommitmentId',
                         'value' => function ($model) {
                             return $model->timeCommitment->name . ' - ' . $model->timeCommitment->numberOfHours . ' hours';
                         },
                     ],
-                    'requirements',
-                    'comments',
+                    // 'requirements',
+                    // 'comments',
                     'createdTime',
                     [
                         'class' => ActionColumn::className(),

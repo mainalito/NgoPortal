@@ -41,7 +41,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->timeCommitment->name . ' - ' . $model->timeCommitment->numberOfHours . ' hours';
                         },
                     ],
-                    'requirements',
+                    [
+                        'attribute' => 'requirements',
+                        'value' => function ($model) {
+                            return strip_tags($model->requirements);
+                        },
+                    ],
+                    // 'requirements',
                     'comments',
                     'createdTime',
                 ],

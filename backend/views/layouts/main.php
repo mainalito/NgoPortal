@@ -133,7 +133,24 @@ AppAsset::register($this);
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-tasks"></i> <!-- Font Awesome tasks icon -->
+                                <p>
+                                    Tasks
+                                    <i class="right fas fa-angle-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item <?= ($currentPage == 'task-approvals') ? 'active' : ''; ?>">
+                                    <a href="/task-approval" class="nav-link">
+                                        <i class="fas fa-check-circle nav-icon"></i> <!-- Font Awesome check-circle icon -->
+                                        <p>Task Approvals</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Members
                                     <i class="right fas fa-angle-right"></i>
@@ -142,12 +159,42 @@ AppAsset::register($this);
                             <ul class="nav nav-treeview">
                                 <li class="nav-item <?= ($currentPage == 'members') ? 'active' : ''; ?>">
                                     <a href="/membership-individual-profiles" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-user-plus nav-icon"></i> <!-- Font Awesome user-plus icon -->
+
                                         <p>Add Members</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-briefcase"></i> <!-- Font Awesome briefcase icon -->
+                                <p>
+                                    Jobs
+                                    <i class="right fas fa-angle-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item <?= ($currentPage == 'job-listings') ? 'active' : ''; ?>">
+                                    <a href="/job-listings/index" class="nav-link">
+                                        <i class="fas fa-list-alt nav-icon"></i> <!-- Font Awesome list-alt icon -->
+
+                                        <p>Job Listings</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item <?= ($currentPage == 'time-commitments') ? 'active' : ''; ?>">
+                                    <a href="/time-commitments/" class="nav-link">
+                                        <i class="fas fa-clock nav-icon"></i> <!-- Font Awesome clock icon -->
+
+                                        <p>Time Commitments</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                       
+
 
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -165,16 +212,16 @@ AppAsset::register($this);
                                         <p>Gender</p>
                                     </a>
                                 </li>
-                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
+                                <!-- <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
                                     <a href="/time-commitments/index" class="nav-link"><i class="fa fa-tags nav-icon"></i>
                                         <p>Time Commitments</p>
                                     </a>
-                                </li>
-                                <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
+                                </li> -->
+                                <!-- <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
                                     <a href="/job-listings/index" class="nav-link"><i class="fa fa-tags nav-icon"></i>
                                         <p>Job Listings</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item <?= ($currentPage == 'communication-types') ? 'active' : ''; ?>">
                                     <a href="/skills/index" class="nav-link"><i class="fa fa-tags nav-icon"></i>
                                         <p>Skills</p>

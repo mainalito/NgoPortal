@@ -17,9 +17,18 @@ use Yii;
  * @property int|null $deleted
  * @property string|null $deletedTime
  * @property int $createdBy
+ * @property int|null $subjectId
+ * @property string|null $subjectTitle
  */
 class TaskApproval extends \yii\db\ActiveRecord
 {
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'task_approval';
+    }
     /**
      * Added by Paul Mburu
      * Filter Deleted Items
@@ -45,7 +54,7 @@ class TaskApproval extends \yii\db\ActiveRecord
      * Added by Paul Mburu
      * To be executed before Save
      */
-   public function save($runValidation = true, $attributeNames = null)
+    public function save($runValidation = true, $attributeNames = null)
     {
         //this record is always new
         if ($this->isNewRecord) {
@@ -59,22 +68,13 @@ class TaskApproval extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
-        return 'task_approval';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
-            [['id', 'createdTime', 'createdBy'], 'required'],
-            [['id', 'TaskTypeId', 'userId', 'statusId', 'deleted', 'createdBy'], 'integer'],
-            [['comments'], 'string'],
+            [['TaskTypeId', 'userId', 'statusId', 'deleted', 'createdBy', 'subjectId'], 'integer'],
+            [['comments', 'subjectTitle'], 'string'],
+            [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
-            [['id'], 'unique'],
         ];
     }
 
@@ -94,6 +94,25 @@ class TaskApproval extends \yii\db\ActiveRecord
             'deleted' => 'Deleted',
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
+            'subjectId' => 'Subject ID',
+            'subjectTitle' => 'Subject Title',
         ];
+    }
+
+    public static function createTaskWorkflow($TaskTypeId, $subjectId, $subjectTitle, $userId)
+    {
+        $taskType = TaskType::findOne($TaskTypeId);
+        if (!$taskType) {
+            return false;
+        }
+        
+        $task = new TaskApproval();
+        $task->TaskTypeId = $TaskTypeId;
+        $task->subjectId = $subjectId;
+        $task->subjectTitle = $subjectTitle;
+        $task->userId = $userId;
+        if($task->save()){
+            //TODO: SEND EMAIL TO THE ADMIN TO TELL THEM A NEW TASK HAS ARRIVED
+        }
     }
 }

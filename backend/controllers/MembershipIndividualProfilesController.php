@@ -41,7 +41,7 @@ class MembershipIndividualProfilesController extends Controller
     /**
      * Lists all MembershipIndividualProfiles models.
      *
-     * @return Response || s
+
      */
     public function actionIndex()
     {
