@@ -67,21 +67,13 @@ YiiAsset::register($this);
                                 'value' => date('Y-m-d', strtotime($individual->dateOfBirth  ?? 'Not Set'))
                             ],
                             [
-                                'attribute' => 'MembershipType',
-                                'value' => $individual->membershipType->name ?? 'Not Set',
-                            ],
-                            [
-                                'attribute' => 'NGO',
-                                'value' => $individual->ngo->name ?? 'Not Set',
-                            ],
-                            [
-                                'attribute' => 'MembershipStatus',
-                                'value' => $individual->membershipApprovalStatus->name ?? 'Pending Review',
+                                'attribute' => 'Availability',
+                                'value' => $individual->availability->name ?? 'Not Set',
                             ],
                         ],
                     ]) ?>
                     <div class="form-group">
-                        <?= Html::a('Update Profile', ['membership-individual-profiles/create', 'id' => base64_encode(Yii::$app->user->identity->id)], ['class' => 'btn btn-primary float-right']) ?>
+                        <?= Html::a('Update Profile', ['volunteer-profile/create', 'id' => base64_encode(Yii::$app->user->identity->id)], ['class' => 'btn btn-primary float-right']) ?>
                     </div>
                 </div>
             </div>

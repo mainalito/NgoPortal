@@ -7,6 +7,7 @@ use volunteers\models\MembershipIndividualProfiles;
 use volunteers\models\MembersUpdateForm;
 use volunteers\models\ResendVerificationEmailForm;
 use volunteers\models\VerifyEmailForm;
+use volunteers\models\VolunteerProfile;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\helpers\ArrayHelper;
@@ -94,7 +95,7 @@ class SiteController extends Controller
     {
         $this->layout = 'main';
         $userid = Yii::$app->user->identity->id;
-        $individual = MembershipIndividualProfiles::find()->where(['userID' => $userid])->one();
+        $individual = VolunteerProfile::find()->where(['userID' => $userid])->one();
         return $this->render('profile', [
             'individual' => $individual,
         ]);
