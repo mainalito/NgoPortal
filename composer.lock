@@ -4,34 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "1192966623fedbe6d577e7e313135801",
-    "packages": [
-        {
-            "name": "borales/yii2-phone-input",
-            "version": "0.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Borales/yii2-phone-input.git",
-                "reference": "563bfab9afed717422e1db848180c6dde706a907"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Borales/yii2-phone-input/zipball/563bfab9afed717422e1db848180c6dde706a907",
-                "reference": "563bfab9afed717422e1db848180c6dde706a907",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/intl-tel-input": "^16",
-                "giggsey/libphonenumber-for-php": "^8",
-                "yiisoft/yii2": ">=2.0.1"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "borales\\extensions\\phoneInput\\": "src/"
-=======
-    "content-hash": "3df51e8155733b0451c764e53d7ccab7",
+    "content-hash": "27f5d126e958e52f939969d1e177e2f6",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -65,7 +38,6 @@
             "autoload": {
                 "psr-4": {
                     "dosamigos\\ckeditor\\": "src"
->>>>>>> 679a03d927288e8a91db611e9674c108035908c4
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -74,25 +46,6 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Borales (Alexandr Bordun)",
-                    "email": "bordun.alexandr@gmail.com"
-                }
-            ],
-            "description": "Yii2 International telephone numbers - Asset Bundle, Behavior, Validator, Widget",
-            "homepage": "https://github.com/Borales/yii2-phone-input",
-            "keywords": [
-                "international telephone numbers",
-                "intl-tel-input",
-                "libphonenumber",
-                "yii2"
-            ],
-            "support": {
-                "issues": "https://github.com/Borales/yii2-phone-input/issues?state=open",
-                "source": "https://github.com/Borales/yii2-phone-input"
-            },
-            "time": "2019-10-06T17:45:40+00:00"
-=======
                     "name": "2amigOS! Consulting Group",
                     "email": "hola@2amigos.us",
                     "homepage": "http://2amigos.us",
@@ -116,20 +69,68 @@
             },
             "abandoned": true,
             "time": "2015-04-30T12:22:25+00:00"
->>>>>>> 679a03d927288e8a91db611e9674c108035908c4
         },
         {
-            "name": "bower-asset/bootstrap",
-            "version": "v5.3.2",
+            "name": "borales/yii2-phone-input",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "344e912d04b5b6a04482113eff20ab416ff01048"
+                "url": "https://github.com/Borales/yii2-phone-input.git",
+                "reference": "563bfab9afed717422e1db848180c6dde706a907"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/344e912d04b5b6a04482113eff20ab416ff01048",
-                "reference": "344e912d04b5b6a04482113eff20ab416ff01048"
+                "url": "https://api.github.com/repos/Borales/yii2-phone-input/zipball/563bfab9afed717422e1db848180c6dde706a907",
+                "reference": "563bfab9afed717422e1db848180c6dde706a907",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/intl-tel-input": "^16",
+                "giggsey/libphonenumber-for-php": "^8",
+                "yiisoft/yii2": ">=2.0.1"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "borales\\extensions\\phoneInput\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Borales (Alexandr Bordun)",
+                    "email": "bordun.alexandr@gmail.com"
+                }
+            ],
+            "description": "Yii2 International telephone numbers - Asset Bundle, Behavior, Validator, Widget",
+            "homepage": "https://github.com/Borales/yii2-phone-input",
+            "keywords": [
+                "international telephone numbers",
+                "intl-tel-input",
+                "libphonenumber",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/Borales/yii2-phone-input/issues?state=open",
+                "source": "https://github.com/Borales/yii2-phone-input"
+            },
+            "time": "2019-10-06T17:45:40+00:00"
+        },
+        {
+            "name": "bower-asset/bootstrap",
+            "version": "v5.2.3",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:twbs/bootstrap.git",
+                "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/cb021439c683d9805e2864c58095b92d405e9b11",
+                "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
             },
             "type": "bower-asset"
         },
