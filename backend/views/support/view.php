@@ -1,6 +1,8 @@
 <?php
 
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
@@ -12,36 +14,60 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="support-view">
+    <div class="container">
+        <div class="card">
+            <h3 class="card-header"><?= Html::encode($this->title) ?></h3>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <div class="card-body">
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'description',
-            'attachments',
-            'resolution',
-            'supportTypeId',
-            'userId',
-            'comments',
-            'createdTime',
-            'updatedTime',
-            'deleted',
-            'deletedTime',
-            'createdBy',
-        ],
-    ]) ?>
+
+                <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        'id',
+                        ['attribute' => 'description', 'value' => function ($model) {
+                            return strip_tags($model->description);
+                        }],
+                        ['attribute' => 'resolution', 'value' => function ($model) {
+                            return strip_tags($model->resolution);
+                        }],
+                        'attachments',
+                        // 'resolution',
+                        ['attribute' => 'supportTypeId', 'value' => function ($model) {
+                            return $model->support->name;
+                        }],
+
+                        'comments',
+                        'createdTime',
+                        // 'updatedTime',
+                        // 'deleted',
+                        // 'deletedTime',
+                        ['label' => 'Sent By', 'value' => function ($model) {
+                            return $model->user->username;
+                        }],
+                    ],
+                ]) ?>
+
+            </div>
+            <?php $form = ActiveForm::begin(); ?>
+          
+                <div class="row">
+                    <div class="col">
+                        <?= $form->field($model, 'resolution')->widget(CKEditor::className(), [
+                            'options' => ['rows' => 6],
+                            'preset' => 'full'
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+        </div>
+
+
 
 </div>

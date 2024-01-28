@@ -17,10 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <h1><?= Html::encode($this->title) ?></h1>
 
-        <p>
-            <?= Html::a('Create Support', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
-
+       
         <?php Pjax::begin(); ?>
 
         <?= GridView::widget([
@@ -29,19 +26,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
 
                 'id',
-                'description',
-                'attachments',
-                'resolution',
-                'supportTypeId',
+                ['attribute'=>'description','value'=>function($model){
+                    return strip_tags($model->description);
+                }],
+                // 'description',
+                // 'attachments',
+                // 'resolution',
+                ['attribute'=>'supportTypeId','value'=>function($model){
+                    return $model->support->name;
+                }],
+                ['label'=>'Status','format'=>'raw','value'=>function($model){
+                    return $model->resolution != '' ? Html::tag('span','Replied',['class'=>'badge badge-success']) :Html::tag('span','Not replied',['class'=>'badge badge-danger']);
+                }],
+              
                 //'userId',
                 //'comments',
                 //'createdTime',
                 //'updatedTime',
                 //'deleted',
                 //'deletedTime',
-                //'createdBy',
+                ['label'=>'Sent By','value'=>function($model){
+                    return $model->user->username;
+                }],
+             
                 [
                     'class' => ActionColumn::className(),
+                    'template'=>'{view}',
                     'urlCreator' => function ($action, support $model, $key, $index, $column) {
                         return Url::toRoute([$action, 'id' => $model->id]);
                     }

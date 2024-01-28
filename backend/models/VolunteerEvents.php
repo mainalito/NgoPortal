@@ -19,6 +19,7 @@ use Yii;
  * @property int|null $deleted
  * @property string|null $deletedTime
  * @property int $createdBy
+ * @property int $isPublished
  */
 class VolunteerEvents extends \yii\db\ActiveRecord
 {
@@ -74,7 +75,7 @@ class VolunteerEvents extends \yii\db\ActiveRecord
         return [
             [['title', 'description', 'attachments', 'comments'], 'string'],
             [['eventDate', 'createdTime', 'updatedTime', 'deletedTime'], 'safe'],
-            [['volunteerEventTypeId', 'deleted', 'createdBy'], 'integer'],
+            [['volunteerEventTypeId', 'deleted', 'createdBy','isPublished'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
         ];
     }
@@ -90,13 +91,18 @@ class VolunteerEvents extends \yii\db\ActiveRecord
             'description' => 'Description',
             'attachments' => 'Attachments',
             'eventDate' => 'Event Date',
-            'volunteerEventTypeId' => 'Volunteer Event Type ID',
+            'volunteerEventTypeId' => 'Volunteer Event Type',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
             'updatedTime' => 'Updated Time',
             'deleted' => 'Deleted',
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
+            'isPublished'=>'Published'
         ];
+    }
+    public function getEvent()
+    {
+        return $this->hasOne(VolunteerEventTypes::className(), ['id' => 'volunteerEventTypeId']);
     }
 }

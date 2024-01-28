@@ -2,10 +2,12 @@
 
 namespace backend\controllers;
 
+use backend\models\JobApplication;
 use backend\models\JobListings;
 use backend\models\TaskApproval;
 use backend\models\TaskType;
 use common\models\TaskTypeValidation;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -41,7 +43,7 @@ class TaskApprovalController extends Controller
      */
     public function actionIndex()
     {
-      
+
         $dataProvider = new ActiveDataProvider([
             'query' => TaskApproval::find(),
             /*
@@ -61,19 +63,47 @@ class TaskApprovalController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single TaskType model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+    
+        if (!$model) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    
+        $jobApplication = JobApplication::find()->where(['id' => $model->subjectId])->one();
+    
+        if (!$jobApplication) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    
+        if ($this->request->isPost) {
+            if ($jobApplication->load($this->request->post())) {
+                if ($jobApplication->save()) {
+                    // Update the task status based on the approval status
+                    if ($jobApplication->approvalStatusId == 1) { // approved
+                        $model->statusId = 1; // approved
+                    } else {
+                        $model->statusId = 2; // rejected
+                    }
+    
+                    // Save the updated task status
+                    $model->save();
+    
+                    
+                    Yii::$app->session->setFlash('success', 'You have ' . $jobApplication->approvalStatus->name . ' this job');
+                    
+                
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            }
+        }
+    
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $jobApplication,
         ]);
     }
-
+    
     /**
      * Creates a new TaskType model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -134,12 +164,12 @@ class TaskApprovalController extends Controller
      * Finds the TaskType model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return TaskType the loaded model
+     * @return TaskApproval the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TaskType::findOne(['id' => $id])) !== null) {
+        if (($model = TaskApproval::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

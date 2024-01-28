@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\models\User;
 use Yii;
 
 /**
@@ -90,7 +91,7 @@ class Support extends \yii\db\ActiveRecord
             'description' => 'Description',
             'attachments' => 'Attachments',
             'resolution' => 'Resolution',
-            'supportTypeId' => 'Support Type ID',
+            'supportTypeId' => 'Support Type ',
             'userId' => 'User ID',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
@@ -99,5 +100,13 @@ class Support extends \yii\db\ActiveRecord
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
         ];
+    }
+    public function getSupport()
+    {
+        return $this->hasOne(SupportType::className(), ['ID' => 'supportTypeId']);
+    }
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['ID' => 'createdBy']);
     }
 }

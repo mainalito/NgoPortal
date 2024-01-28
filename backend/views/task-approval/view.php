@@ -1,49 +1,71 @@
 <?php
 
+use backend\models\MembershipApprovalStatus;
+use kartik\form\ActiveForm;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var backend\models\TaskType $model */
+/** @var backend\models\JobApplication $model */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Task Types', 'url' => ['index']];
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Job Applications', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="task-type-view">
+<div class="job-application-view">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
     <div class="card">
-        <h3 class="card-header"><?= Html::encode($this->title) ?></h3>
-
+        <div class="card-header">
+            Applied Job
+        </div>
         <div class="card-body">
-
-            <p>
-                <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-                    'class' => 'btn btn-danger',
-                    'data' => [
-                        'confirm' => 'Are you sure you want to delete this item?',
-                        'method' => 'post',
-                    ],
-                ]) ?>
-            </p>
-            <?= DetailView::widget([
-                'model' => $model,
-                'attributes' => [
-                    'id',
-                    'name',
-                    'comments',
-                    'createdTime',
-                    'updatedTime',
-                    // 'deleted',
-                    // 'deletedTime',
-                    // 'createdBy',
-                ],
-            ]) ?>
+            <?php $this->render('_job_listing_view', ['model' => $model->job]) ?>
         </div>
     </div>
 
+    <?php $form = ActiveForm::begin(); ?>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            [
+                'attribute' => 'volunteerProfileId',
+                'value' => function ($model) {
+                    return ucwords($model->volunteer->firstName . ' ' . $model->volunteer->otherNames . ' ' . $model->volunteer->lastNames);
+                },
+            ],
 
+            'jobListingId',
+            'approvalStatusId',
+            'comments',
+            'createdTime',
+            'updatedTime',
+            'deleted',
+            'deletedTime',
+            'createdBy',
+        ],
 
+    ]) ?>
+    <div>
+        <?= $form->field($model, 'approvalStatusId')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(MembershipApprovalStatus::find()->all(), 'id', 'name'),
+            'language' => 'en',
+            'options' => ['placeholder' => 'Select Status'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+
+        ])->label('Status') ?>
+    </div>
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
 
 </div>

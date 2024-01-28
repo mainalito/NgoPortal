@@ -13,18 +13,17 @@ return [
     'controllerNamespace' => 'volunteers\controllers',
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-volunteers',
+            'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => ['site/login'],
             'authTimeout'=>1800,
-            'identityCookie' => ['name' => '_identity-volunteers', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the volunteers
-            'name' => 'advanced-volunteers',
+            // this is the name of the session cookie used for login on the frontend
+            'name' => 'advanced-frontend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -42,7 +41,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '<controller>/<action>' => '<controller>/<action>',
             ],
         ],
     ],
