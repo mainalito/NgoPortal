@@ -84,9 +84,9 @@ class JobApplication extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'volunteerProfileId' => 'Volunteer Profile ID',
-            'jobListingId' => 'Job Listing ID',
-            'approvalStatusId' => 'Approval Status ID',
+            'volunteerProfileId' => 'Volunteer Profile ',
+            'jobListingId' => 'Job Listing ',
+            'approvalStatusId' => 'Approval Status ',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
             'updatedTime' => 'Updated Time',
@@ -94,5 +94,17 @@ class JobApplication extends \yii\db\ActiveRecord
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
         ];
+    }
+    public function getVolunteer()
+    {
+        return $this->hasOne(VolunteerProfile::className(), ['id' => 'volunteerProfileId']);
+    }
+    public function getJob()
+    {
+        return $this->hasOne(JobListings::className(), ['id' => 'jobListingId']);
+    }
+    public function getApprovalStatus()
+    {
+        return $this->hasOne(ApprovalStatus::className(), ['id' => 'approvalStatusId']);
     }
 }

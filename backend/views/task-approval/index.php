@@ -25,6 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['attribute' => 'Task type', 'value' => function ($model) {
                     return $model->taskType->name;
                 }],
+                'subjectTitle',
+                
                 // 'id',
                 // 'name',
                 // 'comments',
