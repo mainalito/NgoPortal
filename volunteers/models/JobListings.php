@@ -1,9 +1,8 @@
 <?php
 
-namespace backend\models;
+namespace volunteers\models;
 
 use Yii;
-use backend\models\TimeCommitments;
 
 /**
  * This is the model class for table "job_listings".
@@ -20,6 +19,7 @@ use backend\models\TimeCommitments;
  * @property string|null $deletedTime
  * @property int $createdBy
  *
+ * @property JobApplication[] $jobApplications
  * @property TimeCommitments $timeCommitment
  */
 class JobListings extends \yii\db\ActiveRecord
@@ -42,7 +42,7 @@ class JobListings extends \yii\db\ActiveRecord
             [['timeCommitmentId', 'deleted', 'createdBy'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
-            [['timeCommitmentId'], 'exist', 'skipOnError' => true, 'targetClass' => \backend\models\TimeCommitments::class, 'targetAttribute' => ['timeCommitmentId' => 'id']],
+            [['timeCommitmentId'], 'exist', 'skipOnError' => true, 'targetClass' => TimeCommitments::class, 'targetAttribute' => ['timeCommitmentId' => 'id']],
         ];
     }
 
@@ -55,7 +55,7 @@ class JobListings extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'description' => 'Description',
-            'timeCommitmentId' => 'Time Commitment ',
+            'timeCommitmentId' => 'Time Commitment ID',
             'requirements' => 'Requirements',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
@@ -67,12 +67,22 @@ class JobListings extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[JobApplications]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJobApplications()
+    {
+        return $this->hasMany(JobApplication::class, ['jobListingId' => 'id']);
+    }
+
+    /**
      * Gets query for [[TimeCommitment]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getTimeCommitment()
     {
-        return $this->hasOne(\backend\models\TimeCommitments::class, ['id' => 'timeCommitmentId']);
+        return $this->hasOne(TimeCommitments::class, ['id' => 'timeCommitmentId']);
     }
 }
