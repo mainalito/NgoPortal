@@ -1,13 +1,13 @@
 <?php
 
-use frontend\models\MembershipIndividualProfiles;
+use volunteers\models\MembershipIndividualProfiles;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\MembershipIndividualProfilesSearch $searchModel */
+/** @var volunteers\models\MembershipIndividualProfilesSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Membership Individual Profiles';

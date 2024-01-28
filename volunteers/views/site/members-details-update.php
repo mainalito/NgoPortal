@@ -2,7 +2,7 @@
 
 /** @var yii\web\View $this */
 
-use frontend\models\MembersUpdateForm;
+use volunteers\models\MembersUpdateForm;
 
 /** @var yii\bootstrap5\ActiveForm $form */
 

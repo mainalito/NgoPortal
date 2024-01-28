@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\controllers;
+namespace volunteers\controllers;
 
 use common\models\User;
-use frontend\models\MembershipIndividualProfiles;
-use frontend\models\MembershipIndividualProfilesSearch;
+use volunteers\models\MembershipIndividualProfiles;
+use volunteers\models\MembershipIndividualProfilesSearch;
 use yii\web\Controller;
 use Yii;
 use yii\web\NotFoundHttpException;

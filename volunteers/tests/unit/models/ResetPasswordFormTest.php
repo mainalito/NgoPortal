@@ -1,14 +1,14 @@
 <?php
 
-namespace frontend\tests\unit\models;
+namespace volunteers\tests\unit\models;
 
 use common\fixtures\UserFixture;
-use frontend\models\ResetPasswordForm;
+use volunteers\models\ResetPasswordForm;
 
 class ResetPasswordFormTest extends \Codeception\Test\Unit
 {
     /**
-     * @var \frontend\tests\UnitTester
+     * @var \volunteers\tests\UnitTester
      */
     protected $tester;
 

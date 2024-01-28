@@ -7,7 +7,7 @@
 /** @var InstitutionTypes $institution_types */
 
 use app\models\InstitutionTypes;
-use frontend\models\SignupForm;
+use volunteers\models\SignupForm;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 

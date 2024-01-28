@@ -4,7 +4,7 @@
 
 /** @var string $content */
 
-use frontend\assets\AppAsset;
+use volunteers\assets\AppAsset;
 use yii\bootstrap5\Html;
 use yii\helpers\Url;
 use yii\web\View;

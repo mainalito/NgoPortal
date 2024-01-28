@@ -1,12 +1,12 @@
 <?php
 
-namespace frontend\controllers;
+namespace volunteers\controllers;
 
 use app\models\InstitutionTypes;
-use frontend\models\MembershipIndividualProfiles;
-use frontend\models\MembersUpdateForm;
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
+use volunteers\models\MembershipIndividualProfiles;
+use volunteers\models\MembersUpdateForm;
+use volunteers\models\ResendVerificationEmailForm;
+use volunteers\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\helpers\ArrayHelper;
@@ -16,10 +16,10 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\models\User;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use volunteers\models\PasswordResetRequestForm;
+use volunteers\models\ResetPasswordForm;
+use volunteers\models\SignupForm;
+use volunteers\models\ContactForm;
 use yii\helpers\VarDumper;
 
 /**

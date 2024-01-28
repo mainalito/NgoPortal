@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\MembershipIndividualProfiles $model */
+/** @var volunteers\models\MembershipIndividualProfiles $model */
 
 $this->title = 'Update Profile';
 $this->params['breadcrumbs'][] = ['label' => 'Membership Individual Profiles', 'url' => ['site/profile']];

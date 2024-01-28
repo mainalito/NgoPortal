@@ -7,24 +7,24 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-frontend',
+    'id' => 'app-volunteers',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'volunteers\controllers',
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+            'csrfParam' => '_csrf-volunteers',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['site/login'],
             'authTimeout'=>1800,
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-volunteers', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
-            'name' => 'advanced-frontend',
+            // this is the name of the session cookie used for login on the volunteers
+            'name' => 'advanced-volunteers',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

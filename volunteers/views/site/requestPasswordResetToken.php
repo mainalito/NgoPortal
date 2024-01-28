@@ -5,7 +5,7 @@
 
 /** @var PasswordResetRequestForm $model */
 
-use frontend\models\PasswordResetRequestForm;
+use volunteers\models\PasswordResetRequestForm;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace frontend\tests\functional;
+namespace volunteers\tests\functional;
 
-use frontend\tests\FunctionalTester;
+use volunteers\tests\FunctionalTester;
 
 class AboutCest
 {

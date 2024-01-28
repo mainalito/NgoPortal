@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace volunteers\models;
 
 use common\models\PastPasswords;
 use yii\base\InvalidArgumentException;

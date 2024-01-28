@@ -1,9 +1,9 @@
 <?php
 
-namespace frontend\controllers;
+namespace volunteers\controllers;
 
-use frontend\models\MembershipUsers;
-use frontend\models\MembershipUsersSearch;
+use volunteers\models\MembershipUsers;
+use volunteers\models\MembershipUsersSearch;
 use yii\web\Controller;
 use Yii;
 use yii\web\NotFoundHttpException;

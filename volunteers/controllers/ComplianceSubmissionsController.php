@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace volunteers\controllers;
 
 use app\models\ComplianceData;
 use app\models\ComplianceSubmissions;

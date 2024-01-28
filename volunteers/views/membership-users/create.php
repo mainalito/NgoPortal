@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\MembershipUsers $model */
+/** @var volunteers\models\MembershipUsers $model */
 
 $this->title = 'Register';
 $this->params['breadcrumbs'][] = ['label' => 'Membership Users', 'url' => ['index']];

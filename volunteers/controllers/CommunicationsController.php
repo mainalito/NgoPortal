@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace volunteers\controllers;
 
 use backend\models\Communications;
 use backend\models\MembershipIndividualProfiles;

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\MembershipIndividualProfiles $model */
+/** @var volunteers\models\MembershipIndividualProfiles $model */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Membership Individual Profiles', 'url' => ['index']];

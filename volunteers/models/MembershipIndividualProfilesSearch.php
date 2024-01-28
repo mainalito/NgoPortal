@@ -1,13 +1,13 @@
 <?php
 
-namespace frontend\models;
+namespace volunteers\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\MembershipIndividualProfiles;
+use volunteers\models\MembershipIndividualProfiles;
 
 /**
- * MembershipIndividualProfilesSearch represents the model behind the search form of `frontend\models\MembershipIndividualProfiles`.
+ * MembershipIndividualProfilesSearch represents the model behind the search form of `volunteers\models\MembershipIndividualProfiles`.
  */
 class MembershipIndividualProfilesSearch extends MembershipIndividualProfiles
 {

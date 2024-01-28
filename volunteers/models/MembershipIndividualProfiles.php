@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace volunteers\models;
 
 use backend\models\Gender;
 use backend\models\MembershipApprovalStatus;
