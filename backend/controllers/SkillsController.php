@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\models\Skills;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -80,8 +81,18 @@ class SkillsController extends Controller
         $model = new Skills();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->createdBy = \Yii::$app->user->identity->id;
+                $model->createdTime = date('Y-m-d H:i:s');
+                if ($model->save()){
+
+                    Yii::$app->session->setFlash('success', ' Skill Added Successfully.');
+                    return $this->redirect(['view', 'id' => $model->id]);
+                } else{
+                    Yii::$app->session->setFlash('error', ' Skill Could NOT be added.');
+
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
             }
         } else {
             $model->loadDefaultValues();

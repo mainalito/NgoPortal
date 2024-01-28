@@ -2,6 +2,7 @@
 
 namespace volunteers\models;
 
+use backend\models\Skills;
 use Yii;
 
 /**
@@ -17,6 +18,9 @@ use Yii;
  * @property int|null $deleted
  * @property string|null $deletedTime
  * @property int $createdBy
+ *
+ * @property Skills $skills
+ * @property VolunteerProfile $volunteerProfile
  */
 class VolunteerSkills extends \yii\db\ActiveRecord
 {
@@ -38,6 +42,8 @@ class VolunteerSkills extends \yii\db\ActiveRecord
             [['description', 'comments'], 'string'],
             [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
+            [['volunteerProfileId'], 'exist', 'skipOnError' => true, 'targetClass' => VolunteerProfile::class, 'targetAttribute' => ['volunteerProfileId' => 'id']],
+            [['skillsId'], 'exist', 'skipOnError' => true, 'targetClass' => Skills::class, 'targetAttribute' => ['skillsId' => 'id']],
         ];
     }
 
@@ -48,7 +54,7 @@ class VolunteerSkills extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'skillsId' => 'Skills ID',
+            'skillsId' => 'Skill',
             'description' => 'Description',
             'volunteerProfileId' => 'Volunteer Profile ID',
             'comments' => 'Comments',
@@ -58,5 +64,25 @@ class VolunteerSkills extends \yii\db\ActiveRecord
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
         ];
+    }
+
+    /**
+     * Gets query for [[Skills]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSkills()
+    {
+        return $this->hasOne(Skills::class, ['id' => 'skillsId']);
+    }
+
+    /**
+     * Gets query for [[VolunteerProfile]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVolunteerProfile()
+    {
+        return $this->hasOne(VolunteerProfile::class, ['id' => 'volunteerProfileId']);
     }
 }

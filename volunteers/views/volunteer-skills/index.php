@@ -13,28 +13,26 @@ use yii\grid\GridView;
 $this->title = 'Volunteer Skills';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="volunteer-skills-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Volunteer Skills', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h4><?= Html::encode($this->title) ?></h4>
+        </div>
+        <div class="card-body">
+            <p>
+                <?= Html::a('ADD', ['create'], ['class' => 'btn btn-success float-right']) ?>
+            </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'skillsId',
             'description',
-            'volunteerProfileId',
-            'comments',
-            //'createdTime',
+            'createdTime',
             //'updatedTime',
             //'deleted',
             //'deletedTime',
@@ -47,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
+        </div>
+    </div>
 
 </div>

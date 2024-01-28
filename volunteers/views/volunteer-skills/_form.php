@@ -11,27 +11,24 @@ use yii\widgets\ActiveForm;
 <div class="volunteer-skills-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?= $form->field($model, 'createdBy')->hiddenInput(['value' => Yii::$app->user->identity->id])->label(false) ?>
+    <?= $form->field($model, 'volunteerProfileId')->hiddenInput(['value' => $volunteerProfile->id])->label(false) ?>
+    <?= $form->field($model, 'skillsId')->widget(\kartik\select2\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\backend\models\Skills::find()->all(), 'id', 'name'),
+        'language' => 'en',
+        'options' => ['placeholder' => 'Select Skill'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]) ?>
+    <?= $form->field($model, 'description')->widget(\dosamigos\ckeditor\CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'full'
+    ]) ?>
 
-    <?= $form->field($model, 'skillsId')->textInput() ?>
-
-    <?= $form->field($model, 'description')->textInput() ?>
-
-    <?= $form->field($model, 'volunteerProfileId')->textInput() ?>
-
-    <?= $form->field($model, 'comments')->textInput() ?>
-
-    <?= $form->field($model, 'createdTime')->textInput() ?>
-
-    <?= $form->field($model, 'updatedTime')->textInput() ?>
-
-    <?= $form->field($model, 'deleted')->textInput() ?>
-
-    <?= $form->field($model, 'deletedTime')->textInput() ?>
-
-    <?= $form->field($model, 'createdBy')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success float-right']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -11,9 +11,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Volunteer Skills', 'url' => ['inde
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="volunteer-skills-view">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <h4><?= Html::encode($this->title) ?></h4>
+        </div>
+
+        <div class="card-body">
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -29,17 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'skillsId',
             'description',
-            'volunteerProfileId',
-            'comments',
             'createdTime',
-            'updatedTime',
-            'deleted',
-            'deletedTime',
-            'createdBy',
         ],
     ]) ?>
-
+        </div>
+    </div>
 </div>
