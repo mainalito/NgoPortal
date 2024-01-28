@@ -10,11 +10,12 @@ $this->params['breadcrumbs'][] = ['label' => 'Volunteer Events', 'url' => ['inde
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="volunteer-events-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <div class="card">
+        <h3 class="card-header"><?= Html::encode($this->title) ?></h3>
+        <div class="card-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 </div>

@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\support;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,13 +61,21 @@ class SupportController extends Controller
     /**
      * Displays a single support model.
      * @param int $id ID
-     * @return string
+    
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                //TODO: SEND EMAIL TO VOLUNTEER
+                Yii::$app->session->setFlash('success', 'Response was submitted Successfully');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 

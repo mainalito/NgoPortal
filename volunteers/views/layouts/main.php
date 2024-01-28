@@ -136,12 +136,12 @@ AppAsset::register($this);
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-gavel"></i>
-                                <p>Communications <i class="right fas fa-angle-right"></i></p>
+                                <p>User Support <i class="right fas fa-angle-right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item <?= ($currentPage == 'communications') ? 'active' : ''; ?>">
-                                    <a href="/communications" class="nav-link"><i class="fas fa-upload nav-icon"></i>
-                                        <p>More</p>
+                                <li class="nav-item <?= ($currentPage == 'support') ? 'active' : ''; ?>">
+                                    <a href="/support/" class="nav-link"><i class="fas fa-upload nav-icon"></i>
+                                        <p>Create Support</p>
                                     </a>
                                 </li>
                             </ul>

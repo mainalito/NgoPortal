@@ -173,12 +173,21 @@ return array (
     'alias' => 
     array (
       '@borales/extensions/phoneInput' => $vendorDir . '/borales/yii2-phone-input/src',
-    )
+    ),
+  ),
+  'yiisoft/yii2-jui' => 
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.7.0',
+    'alias' => 
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
   ),
   '2amigos/yii2-ckeditor-widget' => 
   array (
     'name' => '2amigos/yii2-ckeditor-widget',
-    'version' => '1.0.4.0',
+    'version' => '2.1.0.0',
     'alias' => 
     array (
       '@dosamigos/ckeditor' => $vendorDir . '/2amigos/yii2-ckeditor-widget/src',
