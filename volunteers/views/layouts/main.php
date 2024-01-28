@@ -141,7 +141,7 @@ AppAsset::register($this);
                             <ul class="nav nav-treeview">
                                 <li class="nav-item <?= ($currentPage == 'communications') ? 'active' : ''; ?>">
                                     <a href="/communications" class="nav-link"><i class="fas fa-upload nav-icon"></i>
-                                        <p>Communication</p>
+                                        <p>More</p>
                                     </a>
                                 </li>
                             </ul>
