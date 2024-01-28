@@ -27,12 +27,9 @@
         "kartik-v/yii2-dialog": "dev-master",
         "symfony/mailer": "^5.4",
         "kartik-v/yii2-mpdf": "dev-master",
-<<<<<<< HEAD
-        "borales/yii2-phone-input": "*"
-
-=======
+        "borales/yii2-phone-input": "*",
         "2amigos/yii2-ckeditor-widget": "~1.0"
->>>>>>> 679a03d927288e8a91db611e9674c108035908c4
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -51,7 +48,8 @@
         "psr-4": {
             "common\\tests\\": ["common/tests/", "common/tests/_support"],
             "backend\\tests\\": ["backend/tests/", "backend/tests/_support"],
-            "frontend\\tests\\": ["frontend/tests/", "frontend/tests/_support"]
+            "frontend\\tests\\": ["frontend/tests/", "frontend/tests/_support"],
+            "volunteers\\tests\\": ["volunteers/tests/", "volunteers/tests/_support"]
         }
     },
     "config": {
