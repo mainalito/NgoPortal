@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'CV',
                 'format' => 'raw',
                 'value' => static function ($model) {
-                    return Html::a(Html::button(basename("Download"), ['class' => 'btn btn-primary']), ['view-docs', 'path' => base64_encode($model->CV)], ['target' => '_blank']);
+                    return Html::a(Html::button(basename("Download"), ['class' => 'btn btn-primary']), ['view-docs', 'path' => base64_encode($model->cv)], ['target' => '_blank']);
                 }
             ],
 //            'comments',
