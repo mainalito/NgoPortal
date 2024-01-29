@@ -80,7 +80,7 @@ class VolunteerTimesheetController extends Controller
     public function actionCreate($jobId)
     {
         $model = new VolunteerTimesheet();
-        $job = JobApplication::find()->where(['volunteerProfileId' => Yii::$app->user->id, 'jobListingId' => $jobId])->one();
+        $job = JobApplication::find()->where(['createdBy' => Yii::$app->user->id, 'jobListingId' => $jobId])->one();
         if (!$job) throw new NotFoundHttpException('No such job available');
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {

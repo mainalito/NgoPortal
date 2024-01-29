@@ -327,11 +327,7 @@ AppAsset::register($this);
                                     </a>
                                 </li>
                                 
-                                <li class="nav-item <?= ($currentPage == 'volunteer-events') ? 'active' : ''; ?>">
-                                    <a href="/volunteer-events" class="nav-link"><i class="fa fa-tags nav-icon"></i>
-                                        <p>Volunteer Event</p>
-                                    </a>
-                                </li>
+                              
 
                             </ul>
                         </li>
