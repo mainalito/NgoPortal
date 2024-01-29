@@ -136,6 +136,19 @@ AppAsset::register($this);
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-gavel"></i>
+                                <p>Events <i class="right fas fa-angle-right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item <?= ($currentPage == 'volunteer-events') ? 'active' : ''; ?>">
+                                    <a href="/volunteer-events/" class="nav-link"><i class="fas fa-upload nav-icon"></i>
+                                        <p>Volunteer Events</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-gavel"></i>
                                 <p>User Support <i class="right fas fa-angle-right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">

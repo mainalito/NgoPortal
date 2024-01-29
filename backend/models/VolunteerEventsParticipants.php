@@ -72,7 +72,7 @@ class VolunteerEventsParticipants extends \yii\db\ActiveRecord
             [['volunteerEventId', 'volunteerProfileId', 'deleted', 'createdBy'], 'integer'],
             [['comments'], 'string'],
             [['createdTime', 'createdBy'], 'required'],
-            [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
+            [['createdTime', 'updatedTime', 'deletedTime','isConfirmed'], 'safe'],
         ];
     }
 
@@ -91,6 +91,7 @@ class VolunteerEventsParticipants extends \yii\db\ActiveRecord
             'deleted' => 'Deleted',
             'deletedTime' => 'Deleted Time',
             'createdBy' => 'Created By',
+            'isConfirmed'=>'Confrim'
         ];
     }
 }
