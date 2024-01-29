@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                            return $model->timeCommitment->numberOfHours;
 //                        }
 //                    ],
-                    'jobListing.timeCommitmentId',
+                    'jobListing.timeCommitment.numberOfHours',
                     'approvalStatusId',
                     'jobListing.requirements',
                     [

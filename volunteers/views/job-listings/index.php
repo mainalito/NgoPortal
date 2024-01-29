@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                            return $model->timeCommitment->numberOfHours;
 //                        }
 //                    ],
-                    'timeCommitmentId',
+                    'timeCommitment.numberOfHours',
                     'requirements',
                     [
                         'class' => 'yii\grid\ActionColumn',
