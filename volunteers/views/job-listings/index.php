@@ -34,7 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             return ucwords($model->timeCommitment->name . ' - ' . $model->timeCommitment->numberOfHours . ' Hours');
                         },
                     ],
-                    'requirements',
+                    [
+                        'attribute' => 'requirements',
+                        'format'=>'html'
+                    ],
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'Action',

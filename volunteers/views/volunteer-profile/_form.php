@@ -118,7 +118,7 @@ use yii\widgets\ActiveForm;
 
             // Perform AJAX request to get country information
             $.ajax({
-                url: '/membership-individual-profiles/get-country-info',
+                url: '/volunteers/get-country-info',
                 type: 'GET',
                 data: {
                     countryId: countryId

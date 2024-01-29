@@ -59,7 +59,7 @@ class VolunteerProfile extends \yii\db\ActiveRecord
             [['genderId', 'volunteerUserId', 'userId', 'countryId', 'passport', 'IdNo', 'availabilityId', 'deleted', 'createdBy'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['userId' => 'id']],
-            [['countryId'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['countryId' => 'ID']],
+            [['countryId'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['countryId' => 'countryId']],
             [['genderId'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::class, 'targetAttribute' => ['genderId' => 'ID']],
             [['availabilityId'], 'exist', 'skipOnError' => true, 'targetClass' => VolunteerAvailability::class, 'targetAttribute' => ['availabilityId' => 'id']],
         ];
@@ -112,7 +112,7 @@ class VolunteerProfile extends \yii\db\ActiveRecord
      */
     public function getCountry()
     {
-        return $this->hasOne(Countries::class, ['ID' => 'countryId']);
+        return $this->hasOne(Countries::class, ['countryId' => 'countryId']);
     }
 
     /**

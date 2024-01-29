@@ -52,7 +52,7 @@ YiiAsset::register($this);
                             ],
                             [
                                 'attribute' => 'Country',
-                                'value' => $individual->countryId ?? 'Not Set',
+                                'value' => $individual->country->CountryName ?? 'Not Set',
                             ],
                             [
                                 'attribute' => 'Telephone',

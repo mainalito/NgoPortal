@@ -2,6 +2,7 @@
 
 namespace volunteers\controllers;
 
+use backend\models\Countries;
 use common\models\User;
 use volunteers\models\VolunteerProfile;
 use volunteers\models\VolunteerProfileSearch;
@@ -9,6 +10,7 @@ use yii\web\Controller;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * VolunteerProfileController implements the CRUD actions for VolunteerProfile model.
@@ -101,6 +103,17 @@ class VolunteerProfileController extends Controller
             'model' => $model,
             'user' => $user
         ]);
+    }
+
+    public function actionGetCountryInfo($countryId)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $country = Countries::findOne($countryId);
+
+        return [
+            'usePassport' => $country->usePassport,
+        ];
     }
 
     /**
