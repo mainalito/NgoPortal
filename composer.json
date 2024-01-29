@@ -29,7 +29,8 @@
         "kartik-v/yii2-mpdf": "dev-master",
         "borales/yii2-phone-input": "*",
         "yiisoft/yii2-jui": "~2.0.0",
-        "2amigos/yii2-ckeditor-widget": "^2.1"
+        "2amigos/yii2-ckeditor-widget": "^2.1",
+        "kartik-v/yii2-widget-fileinput": "@dev"
 
     },
     "require-dev": {

@@ -128,6 +128,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/intl-tel-input" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/giggsey/libphonenumber-for-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/giggsey/locale" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/jquery-ui" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ckeditor/ckeditor" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-fileinput" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-fileinput" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-jui" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

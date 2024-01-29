@@ -15,18 +15,18 @@ $this->params['breadcrumbs'][] = ['label' => 'Job Applications', 'url' => ['inde
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="job-application-view">
+<div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="card">
-        <div class="card-header">
-            Applied Job
-        </div>
-        <div class="card-body">
-            <?php $this->render('_job_listing_view', ['model' => $model->job]) ?>
-        </div>
-    </div>
+<!--    <div class="card">-->
+<!--        <div class="card-header">-->
+<!--            Applied Job-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            --><?php //$this->render('_job_listing_view', ['model' => $model->job]) ?>
+<!--        </div>-->
+<!--    </div>-->
 
     <?php $form = ActiveForm::begin(); ?>
     <?= DetailView::widget([
@@ -40,20 +40,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
-            'jobListingId',
-            'approvalStatusId',
-            'comments',
+            'job.name',
+            'job.description',
+            'job.requirements',
+            'approvalStatus.name',
+            [
+                'attribute' => 'coverLetter',
+                'format'=>'html'
+            ],
+//            'comments',
             'createdTime',
             'updatedTime',
-            'deleted',
-            'deletedTime',
-            'createdBy',
         ],
 
     ]) ?>
     <div>
         <?= $form->field($model, 'approvalStatusId')->widget(Select2::classname(), [
-            'data' => ArrayHelper::map(MembershipApprovalStatus::find()->all(), 'id', 'name'),
+            'data' => ArrayHelper::map(\backend\models\ApprovalStatus::find()->all(), 'id', 'name'),
             'language' => 'en',
             'options' => ['placeholder' => 'Select Status'],
             'pluginOptions' => [

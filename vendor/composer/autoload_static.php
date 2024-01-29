@@ -119,10 +119,12 @@ class ComposerStaticInit83c39f983bb751dcf7738436d796fda0
         array (
             'kartik\\sortable\\' => 16,
             'kartik\\select2\\' => 15,
+            'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\plugins\\depdrop\\' => 23,
             'kartik\\mpdf\\' => 12,
             'kartik\\grid\\' => 12,
             'kartik\\form\\' => 12,
+            'kartik\\file\\' => 12,
             'kartik\\export\\' => 14,
             'kartik\\dynagrid\\' => 16,
             'kartik\\dialog\\' => 14,
@@ -280,6 +282,10 @@ class ComposerStaticInit83c39f983bb751dcf7738436d796fda0
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2/src',
         ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+        ),
         'kartik\\plugins\\depdrop\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/dependent-dropdown',
@@ -295,6 +301,10 @@ class ComposerStaticInit83c39f983bb751dcf7738436d796fda0
         'kartik\\form\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-activeform/src',
+        ),
+        'kartik\\file\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput/src',
         ),
         'kartik\\export\\' => 
         array (

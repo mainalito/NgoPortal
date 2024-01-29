@@ -3,7 +3,7 @@
         'name' => 'yiisoft/yii2-app-advanced',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b55d2dd62c12b08a243dca56d3844ce31b188fb2',
+        'reference' => '0764a535b283fc1d1ad8dae25b6db8f002266342',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -280,6 +280,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'kartik-v/bootstrap-fileinput' => array(
+            'pretty_version' => 'v5.5.2',
+            'version' => '5.5.2.0',
+            'reference' => '35c29cd9fd5bc47eae5238feaabee95b2d7efe3c',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../kartik-v/bootstrap-fileinput',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kartik-v/dependent-dropdown' => array(
             'pretty_version' => 'v1.4.9',
             'version' => '1.4.9.0',
@@ -388,6 +397,17 @@
             'install_path' => __DIR__ . '/../kartik-v/yii2-widget-depdrop',
             'aliases' => array(
                 0 => '1.0.x-dev',
+            ),
+            'dev_requirement' => false,
+        ),
+        'kartik-v/yii2-widget-fileinput' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'b5500b6855526837154694c2afab8dbc3afc8abd',
+            'type' => 'yii2-extension',
+            'install_path' => __DIR__ . '/../kartik-v/yii2-widget-fileinput',
+            'aliases' => array(
+                0 => '1.1.x-dev',
             ),
             'dev_requirement' => false,
         ),
@@ -1054,7 +1074,7 @@
         'yiisoft/yii2-app-advanced' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b55d2dd62c12b08a243dca56d3844ce31b188fb2',
+            'reference' => '0764a535b283fc1d1ad8dae25b6db8f002266342',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
