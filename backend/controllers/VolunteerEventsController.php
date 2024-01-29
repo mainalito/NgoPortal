@@ -82,7 +82,7 @@ class VolunteerEventsController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->files = UploadedFile::getInstances($model, 'files');
+                // $model->files = UploadedFile::getInstances($model, 'files');
                 if ($model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
                 }

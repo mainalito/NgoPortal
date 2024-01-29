@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
         'preset' => 'full'
     ]) ?>
 
-    <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?>
+    <!-- <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?> -->
 
     <?= $form->field($model, 'eventDate')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
