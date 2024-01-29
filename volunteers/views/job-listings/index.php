@@ -28,13 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
                     'name',
                     'description',
-//                    [
-//                        'attribute' => 'timeCommitmentId',
-//                        'value' => function ($model) {
-//                            return $model->timeCommitment->numberOfHours;
-//                        }
-//                    ],
-                    'timeCommitment.numberOfHours',
+                    [
+                        'attribute' => 'timeCommitmentId',
+                        'value' => function ($model) {
+                            return ucwords($model->timeCommitment->name . ' - ' . $model->timeCommitment->numberOfHours . ' Hours');
+                        },
+                    ],
                     'requirements',
                     [
                         'class' => 'yii\grid\ActionColumn',

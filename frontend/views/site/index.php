@@ -2,7 +2,7 @@
 
 /** @var yii\web\View $this */
 
-$this->title = 'Annual Compliance';
+$this->title = 'Member Dashboard';
 ?>
 <section class="content" id="configuration ">
     <div class="card">
