@@ -94,10 +94,10 @@ AppAsset::register($this);
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-light-green elevation-4" style="background-color: green; color: white!important;">
+        <aside class="main-sidebar sidebar-light-green elevation-4" style="background-color: #088F8F; color: white!important;">
             <!-- Brand Logo -->
-            <a href="/" class="brand-link  mt-3 pb-3 mb-3 d-flex" style="padding: 0!important;">
-                <img src="../../dist/img/logo.png" alt="Logo" class="brand-image" style="opacity: 1!important; max-height: 50px!important; margin: 0!important; width: 245px!important;">
+            <a href="/" class="brand-link  mt-3 pb-3 mb-3 d-flex b" style="padding: 0!important;">
+                <img src="https://sukenya.org/assets/fe/img/logo/logo.png" alt="Logo" class="brand-image" style="opacity: 1!important; max-height: 50px!important; margin: 0!important; width: 245px!important;">
             </a>
 
             <!-- Sidebar -->

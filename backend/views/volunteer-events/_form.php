@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
 <div class="volunteer-events-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput() ?>
 
@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
         'preset' => 'full'
     ]) ?>
 
-    <?= $form->field($model, 'attachments[]')->fileInput() ?>
+    <?= $form->field($model, 'files[]')->fileInput(['multiple' => true]) ?>
 
     <?= $form->field($model, 'eventDate')->widget(DatePicker::class, [
         'options' => ['class' => 'form-control'],
@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
             'changeYear' => true,
             'changeMonth' => true,
             'minDate' => 0,
-            // additional client options if needed
+
         ],
     ]) ?>
 
