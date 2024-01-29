@@ -10,6 +10,6 @@ use yii\base\Model;
  */
 class TaskTypeValidation
 {
-   static const Volunteer = 1;
-  static  const Members = 2;
+    const Volunteer = 1;
+    const Members = 2;
 }

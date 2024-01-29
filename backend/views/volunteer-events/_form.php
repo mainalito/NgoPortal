@@ -28,14 +28,15 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'attachments[]')->fileInput() ?>
 
     <?= $form->field($model, 'eventDate')->widget(DatePicker::class, [
-    'options' => ['class' => 'form-control'],
-    'dateFormat' => 'yyyy-MM-dd', // specify the format here
-    'clientOptions' => [
-        'changeYear' => true,
-        'changeMonth' => true,
-        // additional client options if needed
-    ],
-]) ?>
+        'options' => ['class' => 'form-control'],
+        'dateFormat' => 'yyyy-MM-dd', // specify the format here
+        'clientOptions' => [
+            'changeYear' => true,
+            'changeMonth' => true,
+            'minDate' => 0,
+            // additional client options if needed
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'volunteerEventTypeId')->widget(Select2::classname(), [
         'data' => ArrayHelper::map(VolunteerEventTypes::find()->all(), 'id', 'name'),
@@ -45,7 +46,7 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]) ?>
-    <?= $form->field($model, 'isPublished')->radioList([1=>'Yes',2=>'No'])->hint('If you select this, your event will be published to the volunteers') ?>
+    <?= $form->field($model, 'isPublished')->radioList([1 => 'Yes', 2 => 'No'])->hint('If you select this, your event will be published to the volunteers') ?>
 
 
 
