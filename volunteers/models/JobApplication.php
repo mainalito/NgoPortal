@@ -61,7 +61,7 @@ class JobApplication extends \yii\db\ActiveRecord
             'id' => 'ID',
             'volunteerProfileId' => 'Volunteer Profile ID',
             'jobListingId' => 'Job Listing ID',
-            'approvalStatusId' => 'Approval Status ID',
+            'approvalStatusId' => 'Status',
             'cv' => 'Cv',
             'coverLetter' => 'Cover Letter',
             'comments' => 'Comments',

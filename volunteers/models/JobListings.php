@@ -2,6 +2,7 @@
 
 namespace volunteers\models;
 
+use backend\models\TimeCommitments;
 use Yii;
 
 /**
@@ -55,7 +56,7 @@ class JobListings extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Job Name',
             'description' => 'Job Description',
-            'timeCommitmentId' => 'Job Time Commitment ID',
+            'timeCommitmentId' => 'Time Commitment',
             'requirements' => 'Job Requirements',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',

@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var volunteers\models\JobListingsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Available Jobs';
+$this->title = 'Current Jobs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container-fluid">
@@ -26,23 +26,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    'name',
-                    'description',
+                    'jobListing.name',
+                    'jobListing.description',
 //                    [
 //                        'attribute' => 'timeCommitmentId',
 //                        'value' => function ($model) {
 //                            return $model->timeCommitment->numberOfHours;
 //                        }
 //                    ],
-                    'timeCommitmentId',
-                    'requirements',
+                    'jobListing.timeCommitmentId',
+                    'approvalStatusId',
+                    'jobListing.requirements',
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => 'Action',
-                        'template' => '{apply}',
+                        'template' => '{view}',
                         'buttons' => [
-                            'apply' => function ($url, $model) {
-                                return Html::a('Apply', ['/job-application/create', 'id' => base64_encode($model->id)], ['class' => 'btn btn-sm btn-primary', 'style' => 'margin-right: 10px']);
+                            'view' => function ($url, $model) {
+                                return Html::a('View', ['/volunteer-timesheet/create', 'jobId' => $model->jobListingId], ['class' => 'btn btn-sm btn-primary', 'style' => 'margin-right: 10px']);
                             },
                         ],
                     ],
