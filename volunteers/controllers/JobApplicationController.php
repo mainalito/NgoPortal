@@ -9,6 +9,7 @@ use common\models\User;
 use volunteers\models\JobApplication;
 use volunteers\models\JobApplicationSearch;
 use volunteers\models\VolunteerProfile;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use Yii;
 use yii\web\NotFoundHttpException;
@@ -54,13 +55,39 @@ class JobApplicationController extends Controller
         ]);
     }
 
+
+    public
+    function actionCurrentJobs()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => JobApplication::find()->where(['approvalStatusId' => 2, 'createdBy' => Yii::$app->user->identity->id]),
+
+
+            /*
+            'pagination' => [
+                'pageSize' => 50
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ],
+            */
+        ]);
+
+
+        return $this->render('current-jobs', [
+            'dataProvider' => $dataProvider,]);
+    }
+
     /**
      * Displays a single JobApplication model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public
+    function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -72,12 +99,25 @@ class JobApplicationController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate($id)
+    public
+    function actionCreate($id)
     {
         $id = base64_decode($id);
         $job = JobListings::findOne($id);
         $profile = VolunteerProfile::find()->where(['userId' => Yii::$app->user->identity->id])->one();
-        $model = new JobApplication();
+        if (is_null($profile)) {
+            Yii::$app->session->setFlash('error', 'Please update your profile first to access the job application.', true);
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        $jobApplication = JobApplication::find()->where(['jobListingId' => $id, 'volunteerProfileId' => $profile->id])->one();
+
+        if (!is_null($jobApplication)) {
+            Yii::$app->session->setFlash('error', 'You have already applied for this job.', true);
+            return $this->redirect(Yii::$app->request->referrer);
+        } else {
+
+            $model = new JobApplication();
+        }
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
@@ -104,7 +144,7 @@ class JobApplicationController extends Controller
 
                 /* Save the model */
                 if ($model->save()) {
-                (new \backend\models\TaskApproval)->createTaskWorkflow(TaskTypeValidation::Volunteer, $model->id, 'Application for Job', Yii::$app->user->identity->id);
+                    (new \backend\models\TaskApproval)->createTaskWorkflow(TaskTypeValidation::Volunteer, $model->id, 'Application for Job', Yii::$app->user->identity->id);
                     Yii::$app->session->setFlash('success', ' Job Application Successful. You will be notified once your application is reviewed.', true);
                     return $this->redirect(['job-listings/index']);
                 }
@@ -128,7 +168,8 @@ class JobApplicationController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public
+    function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
@@ -148,7 +189,8 @@ class JobApplicationController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public
+    function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
@@ -162,7 +204,8 @@ class JobApplicationController extends Controller
      * @return JobApplication the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected
+    function findModel($id)
     {
         if (($model = JobApplication::findOne(['id' => $id])) !== null) {
             return $model;

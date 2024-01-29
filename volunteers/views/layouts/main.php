@@ -154,7 +154,14 @@ AppAsset::register($this);
                             <ul class="nav nav-treeview">
                                 <li class="nav-item <?= ($currentPage == 'communications') ? 'active' : ''; ?>">
                                     <a href="/job-listings/index" class="nav-link"><i class="fas fa-upload nav-icon"></i>
-                                        <p>Jobs</p>
+                                        <p>Available Jobs</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item <?= ($currentPage == 'communications') ? 'active' : ''; ?>">
+                                    <a href="/job-application/current-jobs" class="nav-link"><i class="fas fa-upload nav-icon"></i>
+                                        <p>Current Jobs</p>
                                     </a>
                                 </li>
                             </ul>
