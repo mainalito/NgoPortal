@@ -2,7 +2,9 @@
 
 namespace backend\models;
 
+use common\models\TaskTypeValidation;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "volunteer_events".
@@ -24,6 +26,10 @@ use Yii;
 class VolunteerEvents extends \yii\db\ActiveRecord
 {
     /**
+     * @var UploadedFile[]
+     */
+    public $files;
+    /**
      * Added by Paul Mburu
      * Filter Deleted Items
      */
@@ -43,6 +49,7 @@ class VolunteerEvents extends \yii\db\ActiveRecord
         $m->deletedTime = date('Y-m-d H:i:s');
         return $m->save();
     }
+  
 
     /**
      * Added by Paul Mburu
@@ -73,6 +80,7 @@ class VolunteerEvents extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['files'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf, xls, xlsx, doc, docx'],
             [['title', 'description', 'attachments', 'comments'], 'string'],
             [['eventDate', 'createdTime', 'updatedTime', 'deletedTime'], 'safe'],
             [['volunteerEventTypeId', 'deleted', 'createdBy','isPublished'], 'integer'],
