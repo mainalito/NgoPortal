@@ -48,12 +48,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'coverLetter',
                 'format'=>'html'
             ],
+            [
+                'label' => 'CV',
+                'format' => 'raw',
+                'value' => static function ($model) {
+                    return Html::a(Html::button(basename("Download"), ['class' => 'btn btn-primary']), ['view-docs', 'path' => base64_encode($model->EnergyAttachment)], ['target' => '_blank']);
+                }
+            ],
 //            'comments',
             'createdTime',
             'updatedTime',
         ],
 
     ]) ?>
+    
     <div>
         <?= $form->field($model, 'approvalStatusId')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(\backend\models\ApprovalStatus::find()->all(), 'id', 'name'),

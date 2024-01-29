@@ -175,4 +175,16 @@ class TaskApprovalController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public
+    function actionViewDocs($path)
+    {
+        $Document = base64_decode($path);
+        if (file_exists(Yii::getAlias('/uploads/jobApplication/' . $Document))) {
+            return Yii::$app->response->sendFile(Yii::getAlias('/uploads/jobApplication/' . $Document), basename($Document), ['inline' => true]);
+        }
+
+        Yii::$app->session->setFlash('error', 'Document not found');
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 }
