@@ -1,5 +1,6 @@
 <?php
 
+use backend\models\JobListings;
 use volunteers\models\VolunteerTimesheet;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -31,8 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'starttime',
             'endtime',
             'date',
-
-            'job.name',
+            ['label'=>'Job Name','value'=>function ($model){
+                return @JobListings::findOne($model->jobId)->name; 
+            }],
+        
             // 'volunteerProfileId',
             //'description',
             //'comments',
