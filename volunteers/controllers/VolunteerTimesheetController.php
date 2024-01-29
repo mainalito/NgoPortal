@@ -89,7 +89,8 @@ class VolunteerTimesheetController extends Controller
                 $model->date = date('Y-m-d H:i:s');
                 if ($model->save()) {
                     Yii::$app->session->setFlash('success', 'YOur timesheet was submitted successfully');
-                    return $this->redirect(Yii::$app->request->referrer);
+                    return $this->redirect(['index']);
+
                 }
             }
         } else {

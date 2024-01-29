@@ -16,9 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <!-- <p>
         <?= Html::a('Create Volunteer Timesheet', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    </p> -->
 
     <?php Pjax::begin(); ?>
 
@@ -39,12 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
             //'deleted',
             //'deletedTime',
             //'createdBy',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, VolunteerTimesheet $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
+            // [
+            //     'class' => ActionColumn::className(),
+            //     'urlCreator' => function ($action, VolunteerTimesheet $model, $key, $index, $column) {
+            //         return Url::toRoute([$action, 'id' => $model->id]);
+            //      }
+            // ],
         ],
     ]); ?>
 
