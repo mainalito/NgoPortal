@@ -2,6 +2,9 @@
 
 namespace volunteers\controllers;
 
+use backend\models\JobListings;
+use backend\models\TaskApproval;
+use common\models\TaskTypeValidation;
 use common\models\User;
 use volunteers\models\JobApplication;
 use volunteers\models\JobApplicationSearch;
@@ -10,6 +13,7 @@ use yii\web\Controller;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * JobApplicationController implements the CRUD actions for JobApplication model.
@@ -71,13 +75,39 @@ class JobApplicationController extends Controller
     public function actionCreate($id)
     {
         $id = base64_decode($id);
-        $job = JobApplication::findOne($id);
+        $job = JobListings::findOne($id);
         $profile = VolunteerProfile::find()->where(['userId' => Yii::$app->user->identity->id])->one();
         $model = new JobApplication();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->createdTime = date('Y-m-d H:i:s');
+                $modelId = $model->id;
+
+                /* Save the uploaded file */
+                $file = UploadedFile::getInstance($model, 'cv');
+                if ($file) {
+                    $localPath = Yii::$app->params['path_local'] . '/uploads/';
+                    $folderPath = 'jobApplication/' . $modelId . '/';
+                    $save_path = $localPath . $folderPath;
+                    if (!is_dir($save_path)) {
+                        mkdir($save_path, 0777, true);
+                    }
+
+                    $fileName = $file->name;
+                    $filePath = $save_path . $fileName;
+
+                    if ($file->saveAs($filePath)) {
+                        $model->cv = $folderPath . $fileName;
+                    }
+                }
+
+                /* Save the model */
+                if ($model->save()) {
+                (new \backend\models\TaskApproval)->createTaskWorkflow(TaskTypeValidation::Volunteer, $model->id, 'Application for Job', Yii::$app->user->identity->id);
+                    Yii::$app->session->setFlash('success', ' Job Application Successful. You will be notified once your application is reviewed.', true);
+                    return $this->redirect(['job-listings/index']);
+                }
             }
         } else {
             $model->loadDefaultValues();

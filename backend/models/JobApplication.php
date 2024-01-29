@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\models\User;
 use Yii;
 
 /**
@@ -97,14 +98,16 @@ class JobApplication extends \yii\db\ActiveRecord
     }
     public function getVolunteer()
     {
-        return $this->hasOne(VolunteerProfile::className(), ['id' => 'volunteerProfileId']);
+        return $this->hasOne(\volunteers\models\VolunteerProfile
+            ::className(), ['id' => 'volunteerProfileId']);
     }
     public function getJob()
     {
-        return $this->hasOne(JobListings::className(), ['id' => 'jobListingId']);
+        return $this->hasOne(\volunteers\models\JobListings::className(), ['id' => 'jobListingId']);
     }
     public function getApprovalStatus()
     {
         return $this->hasOne(ApprovalStatus::className(), ['id' => 'approvalStatusId']);
     }
+
 }

@@ -66,13 +66,13 @@ class TaskApprovalController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-    
+
         if (!$model) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     
         $jobApplication = JobApplication::find()->where(['id' => $model->subjectId])->one();
-    
+
         if (!$jobApplication) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

@@ -48,7 +48,7 @@ class ApprovalStatus extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Approval status',
             'isApproval' => 'Is Approval',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',

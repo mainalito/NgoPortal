@@ -53,10 +53,10 @@ class JobListings extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'timeCommitmentId' => 'Time Commitment ID',
-            'requirements' => 'Requirements',
+            'name' => 'Job Name',
+            'description' => 'Job Description',
+            'timeCommitmentId' => 'Job Time Commitment ID',
+            'requirements' => 'Job Requirements',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
             'updatedTime' => 'Updated Time',

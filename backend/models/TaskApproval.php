@@ -115,4 +115,7 @@ class TaskApproval extends \yii\db\ActiveRecord
             //TODO: SEND EMAIL TO THE ADMIN TO TELL THEM A NEW TASK HAS ARRIVED
         }
     }
+    public function getTaskType(){
+        return $this->hasOne(TaskType::className(), ['id' => 'TaskTypeId']);
+    }
 }

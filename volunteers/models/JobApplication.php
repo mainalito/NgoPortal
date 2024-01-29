@@ -11,6 +11,8 @@ use Yii;
  * @property int|null $volunteerProfileId
  * @property int|null $jobListingId
  * @property int|null $approvalStatusId
+ * @property string|null $cv
+ * @property string|null $coverLetter
  * @property string|null $comments
  * @property string $createdTime
  * @property string|null $updatedTime
@@ -39,12 +41,14 @@ class JobApplication extends \yii\db\ActiveRecord
     {
         return [
             [['volunteerProfileId', 'jobListingId', 'approvalStatusId', 'deleted', 'createdBy'], 'integer'],
-            [['comments'], 'string'],
+            [[ 'coverLetter', 'comments'], 'string'],
             [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
             [['volunteerProfileId'], 'exist', 'skipOnError' => true, 'targetClass' => VolunteerProfile::class, 'targetAttribute' => ['volunteerProfileId' => 'id']],
             [['approvalStatusId'], 'exist', 'skipOnError' => true, 'targetClass' => ApprovalStatus::class, 'targetAttribute' => ['approvalStatusId' => 'id']],
             [['jobListingId'], 'exist', 'skipOnError' => true, 'targetClass' => JobListings::class, 'targetAttribute' => ['jobListingId' => 'id']],
+            [['cv'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf, jpg, gif, png, docx, doc, xlx, xlsx', 'maxFiles' => 10],
+
         ];
     }
 
@@ -58,6 +62,8 @@ class JobApplication extends \yii\db\ActiveRecord
             'volunteerProfileId' => 'Volunteer Profile ID',
             'jobListingId' => 'Job Listing ID',
             'approvalStatusId' => 'Approval Status ID',
+            'cv' => 'Cv',
+            'coverLetter' => 'Cover Letter',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
             'updatedTime' => 'Updated Time',
