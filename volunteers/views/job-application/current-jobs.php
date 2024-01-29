@@ -28,14 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
                     'jobListing.name',
                     'jobListing.description',
-//                    [
-//                        'attribute' => 'timeCommitmentId',
-//                        'value' => function ($model) {
-//                            return $model->timeCommitment->numberOfHours;
-//                        }
-//                    ],
+                    'jobListing.timeCommitment.name',
                     'jobListing.timeCommitment.numberOfHours',
-                    'approvalStatusId',
+                    'approvalStatus.name',
                     'jobListing.requirements',
                     [
                         'class' => 'yii\grid\ActionColumn',

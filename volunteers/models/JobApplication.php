@@ -2,6 +2,7 @@
 
 namespace volunteers\models;
 
+use backend\models\ApprovalStatus;
 use Yii;
 
 /**
