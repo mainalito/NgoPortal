@@ -4,21 +4,16 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var volunteers\models\VolunteerSkills $model */
+/** @var volunteers\models\JobListings $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Volunteer Skills', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Job Listings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="container-fluid">
-    <div class="card">
-        <div class="card-header">
+<div class="job-listings-view">
 
-            <h4><?= Html::encode($this->title) ?></h4>
-        </div>
-
-        <div class="card-body">
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -34,11 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'skillsId',
+            'id',
+            'name',
             'description',
+            'timeCommitmentId:datetime',
+            'requirements',
+            'comments',
             'createdTime',
+            'updatedTime',
+            'deleted',
+            'deletedTime',
+            'createdBy',
         ],
     ]) ?>
-        </div>
-    </div>
+
 </div>

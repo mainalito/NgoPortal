@@ -2,16 +2,15 @@
 
 namespace volunteers\models;
 
-use backend\models\Skills;
 use Yii;
 
 /**
- * This is the model class for table "volunteer_skills".
+ * This is the model class for table "job_application".
  *
  * @property int $id
- * @property int|null $skillsId
- * @property string|null $description
  * @property int|null $volunteerProfileId
+ * @property int|null $jobListingId
+ * @property int|null $approvalStatusId
  * @property string|null $comments
  * @property string $createdTime
  * @property string|null $updatedTime
@@ -19,17 +18,18 @@ use Yii;
  * @property string|null $deletedTime
  * @property int $createdBy
  *
- * @property Skills $skills
+ * @property ApprovalStatus $approvalStatus
+ * @property JobListings $jobListing
  * @property VolunteerProfile $volunteerProfile
  */
-class VolunteerSkills extends \yii\db\ActiveRecord
+class JobApplication extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'volunteer_skills';
+        return 'job_application';
     }
 
     /**
@@ -38,12 +38,13 @@ class VolunteerSkills extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['skillsId', 'volunteerProfileId', 'deleted', 'createdBy'], 'integer'],
-            [['description', 'comments'], 'string'],
+            [['volunteerProfileId', 'jobListingId', 'approvalStatusId', 'deleted', 'createdBy'], 'integer'],
+            [['comments'], 'string'],
             [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
             [['volunteerProfileId'], 'exist', 'skipOnError' => true, 'targetClass' => VolunteerProfile::class, 'targetAttribute' => ['volunteerProfileId' => 'id']],
-            [['skillsId'], 'exist', 'skipOnError' => true, 'targetClass' => Skills::class, 'targetAttribute' => ['skillsId' => 'id']],
+            [['approvalStatusId'], 'exist', 'skipOnError' => true, 'targetClass' => ApprovalStatus::class, 'targetAttribute' => ['approvalStatusId' => 'id']],
+            [['jobListingId'], 'exist', 'skipOnError' => true, 'targetClass' => JobListings::class, 'targetAttribute' => ['jobListingId' => 'id']],
         ];
     }
 
@@ -54,9 +55,9 @@ class VolunteerSkills extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'skillsId' => 'Skill',
-            'description' => 'Description',
             'volunteerProfileId' => 'Volunteer Profile ID',
+            'jobListingId' => 'Job Listing ID',
+            'approvalStatusId' => 'Approval Status ID',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
             'updatedTime' => 'Updated Time',
@@ -67,13 +68,23 @@ class VolunteerSkills extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Skills]].
+     * Gets query for [[ApprovalStatus]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSkills()
+    public function getApprovalStatus()
     {
-        return $this->hasOne(Skills::class, ['id' => 'skillsId']);
+        return $this->hasOne(ApprovalStatus::class, ['id' => 'approvalStatusId']);
+    }
+
+    /**
+     * Gets query for [[JobListing]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJobListing()
+    {
+        return $this->hasOne(JobListings::class, ['id' => 'jobListingId']);
     }
 
     /**

@@ -2,16 +2,16 @@
 
 namespace volunteers\models;
 
-use backend\models\Skills;
 use Yii;
 
 /**
- * This is the model class for table "volunteer_skills".
+ * This is the model class for table "job_listings".
  *
  * @property int $id
- * @property int|null $skillsId
+ * @property string|null $name
  * @property string|null $description
- * @property int|null $volunteerProfileId
+ * @property int|null $timeCommitmentId
+ * @property string|null $requirements
  * @property string|null $comments
  * @property string $createdTime
  * @property string|null $updatedTime
@@ -19,17 +19,17 @@ use Yii;
  * @property string|null $deletedTime
  * @property int $createdBy
  *
- * @property Skills $skills
- * @property VolunteerProfile $volunteerProfile
+ * @property JobApplication[] $jobApplications
+ * @property TimeCommitments $timeCommitment
  */
-class VolunteerSkills extends \yii\db\ActiveRecord
+class JobListings extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'volunteer_skills';
+        return 'job_listings';
     }
 
     /**
@@ -38,12 +38,11 @@ class VolunteerSkills extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['skillsId', 'volunteerProfileId', 'deleted', 'createdBy'], 'integer'],
-            [['description', 'comments'], 'string'],
+            [['name', 'description', 'requirements', 'comments'], 'string'],
+            [['timeCommitmentId', 'deleted', 'createdBy'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
-            [['volunteerProfileId'], 'exist', 'skipOnError' => true, 'targetClass' => VolunteerProfile::class, 'targetAttribute' => ['volunteerProfileId' => 'id']],
-            [['skillsId'], 'exist', 'skipOnError' => true, 'targetClass' => Skills::class, 'targetAttribute' => ['skillsId' => 'id']],
+            [['timeCommitmentId'], 'exist', 'skipOnError' => true, 'targetClass' => TimeCommitments::class, 'targetAttribute' => ['timeCommitmentId' => 'id']],
         ];
     }
 
@@ -54,9 +53,10 @@ class VolunteerSkills extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'skillsId' => 'Skill',
+            'name' => 'Name',
             'description' => 'Description',
-            'volunteerProfileId' => 'Volunteer Profile ID',
+            'timeCommitmentId' => 'Time Commitment ID',
+            'requirements' => 'Requirements',
             'comments' => 'Comments',
             'createdTime' => 'Created Time',
             'updatedTime' => 'Updated Time',
@@ -67,22 +67,22 @@ class VolunteerSkills extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Skills]].
+     * Gets query for [[JobApplications]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSkills()
+    public function getJobApplications()
     {
-        return $this->hasOne(Skills::class, ['id' => 'skillsId']);
+        return $this->hasMany(JobApplication::class, ['jobListingId' => 'id']);
     }
 
     /**
-     * Gets query for [[VolunteerProfile]].
+     * Gets query for [[TimeCommitment]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getVolunteerProfile()
+    public function getTimeCommitment()
     {
-        return $this->hasOne(VolunteerProfile::class, ['id' => 'volunteerProfileId']);
+        return $this->hasOne(TimeCommitments::class, ['id' => 'timeCommitmentId']);
     }
 }

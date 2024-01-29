@@ -1,18 +1,20 @@
 <?php
 
-namespace backend\controllers;
+namespace volunteers\controllers;
 
-use backend\models\Skills;
-use yii\data\ActiveDataProvider;
+use common\models\User;
+use volunteers\models\JobApplication;
+use volunteers\models\JobApplicationSearch;
+use volunteers\models\VolunteerProfile;
 use yii\web\Controller;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SkillsController implements the CRUD actions for Skills model.
+ * JobApplicationController implements the CRUD actions for JobApplication model.
  */
-class SkillsController extends Controller
+class JobApplicationController extends Controller
 {
     /**
      * @inheritDoc
@@ -33,33 +35,23 @@ class SkillsController extends Controller
     }
 
     /**
-     * Lists all Skills models.
+     * Lists all JobApplication models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Skills::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
-        ]);
+        $searchModel = new JobApplicationSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Skills model.
+     * Displays a single JobApplication model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -72,27 +64,20 @@ class SkillsController extends Controller
     }
 
     /**
-     * Creates a new Skills model.
+     * Creates a new JobApplication model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
-        $model = new Skills();
+        $id = base64_decode($id);
+        $job = JobApplication::findOne($id);
+        $profile = VolunteerProfile::find()->where(['userId' => Yii::$app->user->identity->id])->one();
+        $model = new JobApplication();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $model->createdBy = \Yii::$app->user->identity->id;
-                $model->createdTime = date('Y-m-d H:i:s');
-                if ($model->save()){
-
-                    Yii::$app->session->setFlash('success', ' Skill Added Successfully.');
-                    return $this->redirect(['view', 'id' => $model->id]);
-                } else{
-                    Yii::$app->session->setFlash('error', ' Skill Could NOT be added.');
-
-                    return $this->redirect(Yii::$app->request->referrer);
-                }
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -100,11 +85,14 @@ class SkillsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'job' => $job,
+            'profile' => $profile
+
         ]);
     }
 
     /**
-     * Updates an existing Skills model.
+     * Updates an existing JobApplication model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -124,7 +112,7 @@ class SkillsController extends Controller
     }
 
     /**
-     * Deletes an existing Skills model.
+     * Deletes an existing JobApplication model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -138,15 +126,15 @@ class SkillsController extends Controller
     }
 
     /**
-     * Finds the Skills model based on its primary key value.
+     * Finds the JobApplication model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Skills the loaded model
+     * @return JobApplication the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Skills::findOne(['id' => $id])) !== null) {
+        if (($model = JobApplication::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

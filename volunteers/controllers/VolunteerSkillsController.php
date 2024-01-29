@@ -2,16 +2,19 @@
 
 namespace volunteers\controllers;
 
+use app\models\User;
+use volunteers\models\VolunteerProfile;
 use volunteers\models\VolunteerSkills;
 use volunteers\models\VolunteerSkillsSearch;
 use yii\web\Controller;
+use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * VolunteerSkiilsController implements the CRUD actions for VolunteerSkills model.
+ * VolunteerSkillsController implements the CRUD actions for VolunteerSkills model.
  */
-class VolunteerSkiilsController extends Controller
+class VolunteerSkillsController extends Controller
 {
     /**
      * @inheritDoc
@@ -70,15 +73,26 @@ class VolunteerSkiilsController extends Controller
         $model = new VolunteerSkills();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post()) ) {
+                $model->createdTime = date('Y-m-d H:i:s');
+                if ($model->save()){
+
+                    Yii::$app->session->setFlash('success', ' Skill Added Successfully.');
+                    return $this->redirect(Yii::$app->request->referrer);
+                } else{
+                    Yii::$app->session->setFlash('error', ' Skill Could NOT be added.');
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
             }
         } else {
             $model->loadDefaultValues();
         }
-
+        $volunteerProfile = VolunteerProfile::find()->where(['userId' => Yii::$app->user->identity->id])->one();
+        $volunteerSkills = VolunteerSkills::find()->where(['volunteerProfileId' => $volunteerProfile->id])->all();
         return $this->render('create', [
             'model' => $model,
+            'volunteerSkills' => $volunteerSkills,
+            'volunteerProfile' => $volunteerProfile,
         ]);
     }
 

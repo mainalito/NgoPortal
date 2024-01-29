@@ -10,12 +10,19 @@ $this->params['breadcrumbs'][] = ['label' => 'Volunteer Skills', 'url' => ['inde
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="volunteer-skills-update">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <h4><?= Html::encode($this->title) ?></h4>
+        </div>
+        <div class="card-body">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
 
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+
+    </div>
 </div>

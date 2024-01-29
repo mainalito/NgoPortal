@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\models\TimeCommitments;
 
 /**
  * This is the model class for table "job_listings".
@@ -41,7 +42,7 @@ class JobListings extends \yii\db\ActiveRecord
             [['timeCommitmentId', 'deleted', 'createdBy'], 'integer'],
             [['createdTime', 'createdBy'], 'required'],
             [['createdTime', 'updatedTime', 'deletedTime'], 'safe'],
-            [['timeCommitmentId'], 'exist', 'skipOnError' => true, 'targetClass' => TimeCommitments::class, 'targetAttribute' => ['timeCommitmentId' => 'id']],
+            [['timeCommitmentId'], 'exist', 'skipOnError' => true, 'targetClass' => \backend\models\TimeCommitments::class, 'targetAttribute' => ['timeCommitmentId' => 'id']],
         ];
     }
 
@@ -72,6 +73,6 @@ class JobListings extends \yii\db\ActiveRecord
      */
     public function getTimeCommitment()
     {
-        return $this->hasOne(TimeCommitments::class, ['id' => 'timeCommitmentId']);
+        return $this->hasOne(\backend\models\TimeCommitments::class, ['id' => 'timeCommitmentId']);
     }
 }
