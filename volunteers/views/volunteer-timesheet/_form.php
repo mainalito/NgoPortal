@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,17 +13,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'starttime')->textInput() ?>
+    <?= $form->field($model, 'starttime')->textInput(['type' => 'time']) ?>
+    <?= $form->field($model, 'endtime')->textInput(['type' => 'time']) ?>
 
-    <?= $form->field($model, 'endtime')->textInput() ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'full'
+    ]) ?>
 
-    <?= $form->field($model, 'volunteerProfileId')->textInput() ?>
+    <!-- <?= $form->field($model, 'date')->textInput() ?> -->
 
-    <?= $form->field($model, 'description')->textInput() ?>
+    <!-- <?= $form->field($model, 'volunteerProfileId')->textInput() ?> -->
 
-    <?= $form->field($model, 'comments')->textInput() ?>
+
+    <!-- <?= $form->field($model, 'comments')->textInput() ?>
 
     <?= $form->field($model, 'createdTime')->textInput() ?>
 
@@ -32,7 +37,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'deletedTime')->textInput() ?>
 
-    <?= $form->field($model, 'createdBy')->textInput() ?>
+    <?= $form->field($model, 'createdBy')->textInput() ?> -->
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

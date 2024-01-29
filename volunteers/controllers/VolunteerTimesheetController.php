@@ -2,7 +2,9 @@
 
 namespace volunteers\controllers;
 
+use backend\models\JobApplication;
 use volunteers\models\VolunteerTimesheet;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -75,13 +77,20 @@ class VolunteerTimesheetController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($jobId)
     {
         $model = new VolunteerTimesheet();
-
+        $job = JobApplication::find()->where(['volunteerProfileId' => Yii::$app->user->id, 'jobListingId' => $jobId])->one();
+        if (!$job) throw new NotFoundHttpException('No such job available');
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->volunteerProfileId = Yii::$app->user->id;
+                $model->jobId = $job->id;
+                $model->date = date('Y-m-d H:i:s');
+                if ($model->save()) {
+                    Yii::$app->session->setFlash('success', 'YOur timesheet was submitted successfully');
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
             }
         } else {
             $model->loadDefaultValues();

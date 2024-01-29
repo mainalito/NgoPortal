@@ -29,6 +29,41 @@ class VolunteerTimesheet extends \yii\db\ActiveRecord
     {
         return 'volunteer_timesheet';
     }
+     /**
+     * Added by Paul Mburu
+     * Filter Deleted Items
+     */
+    public static function find()
+    {
+        return parent::find()->andWhere(['=', 'deleted', 0]);
+    }
+
+    /**
+     * Added by Paul Mburu
+     * To be executed before delete
+     */
+    public function delete()
+    {
+        $m = parent::findOne($this->getPrimaryKey());
+        $m->deleted = 1;
+        $m->deletedTime = date('Y-m-d H:i:s');
+        return $m->save();
+    }
+
+    /**
+     * Added by Paul Mburu
+     * To be executed before Save
+     */
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        //this record is always new
+        if ($this->isNewRecord) {
+            $this->createdBy = Yii::$app->user->identity->id;
+            $this->deleted = 0;
+            $this->createdTime = date('Y-m-d h:i:s');
+        }
+        return parent::save();
+    }
 
     /**
      * {@inheritdoc}
@@ -36,10 +71,13 @@ class VolunteerTimesheet extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+        
+            [['starttime', 'endtime'], 'date', 'format' => 'php:H:i'],
+            [['starttime'], 'compare', 'compareAttribute' => 'endtime', 'operator' => '<', 'message' => 'Start time must be earlier than end time'],
             [['starttime', 'endtime', 'date', 'createdTime', 'updatedTime', 'deletedTime'], 'safe'],
             [['volunteerProfileId', 'deleted', 'createdBy'], 'integer'],
             [['description', 'comments'], 'string'],
-            [['createdTime', 'createdBy'], 'required'],
+            [['createdTime', 'createdBy','starttime', 'endtime'], 'required'],
         ];
     }
 
