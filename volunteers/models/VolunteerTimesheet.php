@@ -101,4 +101,8 @@ class VolunteerTimesheet extends \yii\db\ActiveRecord
             'createdBy' => 'Created By',
         ];
     }
+    public function getJob()
+    {
+        return $this->hasOne(JobListings::className(), ['ID' => 'jobId']);
+    }
 }
